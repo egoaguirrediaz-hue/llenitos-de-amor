@@ -1,110 +1,276 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>💛 Operación Día Perfecto 💛</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🌸 Pequeñas Alegrías</title>
+
 <style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #fff0f5; /* Lavanda suave */
-    color: #333;
-    text-align: center;
-    padding: 20px;
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#ffeef4;
+  overflow:hidden;
 }
-h1 {
-    color: #ff69b4; /* Rosa intenso */
-    font-size: 2.5em;
-    margin-bottom: 20px;
+
+/* ======================
+   BANNER
+====================== */
+#banner{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:linear-gradient(#ffd6e7,#fff0f7);
 }
-section {
-    background: #ffe4e1; /* Rosa pastel */
-    border-radius: 15px;
-    padding: 20px;
-    margin: 15px auto;
-    max-width: 600px;
-    display: none; /* Oculto por defecto */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: all 0.5s ease-in-out;
+
+#banner h1{
+  font-size:4em;
+  color:#ff69b4;
+  margin:0;
 }
-section.unlocked {
-    display: block;
+
+#banner button{
+  margin-top:40px;
+  padding:15px 35px;
+  font-size:1.2em;
+  border:none;
+  border-radius:30px;
+  background:#ff69b4;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
 }
-.level-title {
-    font-size: 1.8em;
-    color: #ff1493; /* Rosa fuerte */
-    margin-bottom: 10px;
+
+#banner button:hover{
+  transform:scale(1.05);
 }
-.level-text {
-    font-size: 1.2em;
-    color: #333;
+
+/* ======================
+   CORAZONES
+====================== */
+.heart{
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:pink;
+  transform:rotate(-45deg);
+  animation:floatUp 5s linear infinite;
+}
+
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:pink;
+  border-radius:50%;
+}
+
+.heart::before{ top:-9px; left:0;}
+.heart::after{ left:9px; top:0;}
+
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(-45deg);opacity:1}
+  100%{transform:translateY(-600px) rotate(-45deg);opacity:0}
+}
+
+/* ======================
+   GRID 4 SECCIONES
+====================== */
+#main{
+  display:none;
+  height:100vh;
+  width:100vw;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+}
+
+.section{
+  margin:12px;
+  border-radius:25px;
+  background:#fff0f7;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:25px;
+  opacity:.35;
+  transition:.4s;
+}
+
+.section.unlocked{
+  opacity:1;
+  box-shadow:0 0 25px rgba(255,105,180,.5);
+}
+
+h2{
+  color:#ff69b4;
+  margin:0 0 10px;
+}
+
+.unlock-btn{
+  margin-top:15px;
+  padding:10px 25px;
+  border:none;
+  border-radius:20px;
+  font-size:1em;
+}
+
+.locked .unlock-btn{
+  background:#ccc;
+  color:#666;
+}
+
+.unlocked .unlock-btn{
+  background:#ff69b4;
+  color:white;
+}
+
+.timer{
+  margin-top:8px;
+  font-size:.9em;
+  color:#ff69b4;
 }
 </style>
 </head>
+
 <body>
-<h1>💛 Operación Día Perfecto 💛</h1>
 
-<section id="nivel1">
-    <div class="level-title">🌅 Amanecer de la Misión 💌</div>
-    <div class="level-text">
-        ¡Nivel 1 desbloqueado! 🥰  
-        Comienza tu día con un desayuno sorpresa y un abrazo virtual 😘
-    </div>
-</section>
+<!-- ======================
+     BANNER
+====================== -->
+<div id="banner">
+  <h1>🌸 Pequeñas Alegrías</h1>
+  <button onclick="enterSite()">Si estás preparada, ingresa aquí</button>
+</div>
 
-<section id="nivel2">
-    <div class="level-title">💖 Operación Cariño 💌</div>
-    <div class="level-text">
-        Nivel 2 desbloqueado! 🌸  
-        Es hora de un pequeño detalle: un mensaje bonito o una nota escondida 💌
-    </div>
-</section>
+<!-- ======================
+     CONTENIDO
+====================== -->
+<div id="main">
 
-<section id="nivel3">
-    <div class="level-title">🍰 Misión Dulce Amor 💕</div>
-    <div class="level-text">
-        Nivel 3 desbloqueado! 🧸  
-        Hora de recargar energías con un snack o postre romántico 🍓
-    </div>
-</section>
+  <div class="section" id="section1">
+    <h2>🥐 Desayuno</h2>
+    <p>7:00 am 🌅</p>
+    <button class="unlock-btn">Bloqueado</button>
+    <div class="timer"></div>
+  </div>
 
-<section id="nivel4">
-    <div class="level-title">🌇 Gran Final del Corazón ❤️</div>
-    <div class="level-text">
-        Nivel 4 desbloqueado! 💛  
-        Tu sorpresa final: una actividad romántica juntos o un regalo especial 🌹
-    </div>
-</section>
+  <div class="section" id="section2">
+    <h2>☕ Media Mañana</h2>
+    <p>10:00 am 🕒</p>
+    <button class="unlock-btn">Bloqueado</button>
+    <div class="timer"></div>
+  </div>
+
+  <div class="section" id="section3">
+    <h2>🍽 Almuerzo</h2>
+    <p>13:00 🌸</p>
+    <button class="unlock-btn">Bloqueado</button>
+    <div class="timer"></div>
+  </div>
+
+  <div class="section" id="section4">
+    <h2>✨ Fin de Jornada</h2>
+    <p>16:00 💖</p>
+    <button class="unlock-btn">Bloqueado</button>
+    <div class="timer"></div>
+  </div>
+
+</div>
+
 
 <script>
-function checkLevels() {
-    const now = new Date();
-    const h = now.getHours();
-    const m = now.getMinutes();
+/* ======================
+   CORAZONES
+====================== */
+function createHeart(){
+  const h=document.createElement("div");
+  h.className="heart";
+  h.style.left=Math.random()*window.innerWidth+"px";
+  h.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+}
+setInterval(createHeart,300);
 
-    const levels = [
-        {id: "nivel1", startH:7, startM:0, endH:10, endM:5},
-        {id: "nivel2", startH:10, startM:0, endH:13, endM:5},
-        {id: "nivel3", startH:13, startM:0, endH:16, endM:5},
-        {id: "nivel4", startH:16, startM:0, endH:19, endM:5}
-    ];
 
-    levels.forEach(lvl => {
-        const sec = document.getElementById(lvl.id);
-        const start = lvl.startH*60 + lvl.startM;
-        const end = lvl.endH*60 + lvl.endM;
-        const current = h*60 + m;
-
-        if(current >= start && current <= end){
-            sec.classList.add("unlocked");
-        } else {
-            sec.classList.remove("unlocked");
-        }
-    });
+/* ======================
+   ENTRAR
+====================== */
+function enterSite(){
+  document.getElementById("banner").style.display="none";
+  document.getElementById("main").style.display="grid";
+  updateSections();
 }
 
-// Actualiza cada minuto
-setInterval(checkLevels, 60000);
-checkLevels();
+
+/* ======================
+   TIEMPO RESTANTE (DIARIO)
+====================== */
+function getRemaining(targetHour){
+  const now=new Date();
+
+  let target=new Date();
+  target.setHours(targetHour,0,0,0);
+
+  if(now>=target){
+    target.setDate(target.getDate()+1); // mañana
+  }
+
+  const diff=target-now;
+
+  const h=Math.floor(diff/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+
+  return {diff,h,m};
+}
+
+
+/* ======================
+   ACTUALIZAR ESTADOS
+====================== */
+function updateSections(){
+
+  const unlockTimes=[7,10,13,16];
+
+  const sections=[
+    section1,section2,section3,section4
+  ];
+
+  const now=new Date();
+
+  sections.forEach((sec,i)=>{
+
+    const btn=sec.querySelector(".unlock-btn");
+    const timer=sec.querySelector(".timer");
+
+    const todayUnlock=new Date();
+    todayUnlock.setHours(unlockTimes[i],0,0,0);
+
+    const remaining=getRemaining(unlockTimes[i]);
+
+    // desbloqueado SOLO durante el día después de su hora
+    if(now>=todayUnlock && remaining.h>20){
+      sec.classList.add("unlocked");
+      sec.classList.remove("locked");
+      btn.textContent="Desbloqueado";
+      timer.textContent="Disponible ahora 💖";
+    }else{
+      sec.classList.add("locked");
+      sec.classList.remove("unlocked");
+      btn.textContent="Bloqueado";
+      timer.textContent=`Se desbloqueará en ${remaining.h}h ${remaining.m}m`;
+    }
+  });
+}
+
+setInterval(updateSections,60000);
 </script>
 
 </body>
