@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>💛 Operación Día Perfecto 💛</title>
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff0f5; /* Lavanda suave */
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+h1 {
+    color: #ff69b4; /* Rosa intenso */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+section {
+    background: #ffe4e1; /* Rosa pastel */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 600px;
+    display: none; /* Oculto por defecto */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.5s ease-in-out;
+}
+section.unlocked {
+    display: block;
+}
+.level-title {
+    font-size: 1.8em;
+    color: #ff1493; /* Rosa fuerte */
+    margin-bottom: 10px;
+}
+.level-text {
+    font-size: 1.2em;
+    color: #333;
+}
+</style>
+</head>
+<body>
+<h1>💛 Operación Día Perfecto 💛</h1>
+
+<section id="nivel1">
+    <div class="level-title">🌅 Amanecer de la Misión 💌</div>
+    <div class="level-text">
+        ¡Nivel 1 desbloqueado! 🥰  
+        Comienza tu día con un desayuno sorpresa y un abrazo virtual 😘
+    </div>
+</section>
+
+<section id="nivel2">
+    <div class="level-title">💖 Operación Cariño 💌</div>
+    <div class="level-text">
+        Nivel 2 desbloqueado! 🌸  
+        Es hora de un pequeño detalle: un mensaje bonito o una nota escondida 💌
+    </div>
+</section>
+
+<section id="nivel3">
+    <div class="level-title">🍰 Misión Dulce Amor 💕</div>
+    <div class="level-text">
+        Nivel 3 desbloqueado! 🧸  
+        Hora de recargar energías con un snack o postre romántico 🍓
+    </div>
+</section>
+
+<section id="nivel4">
+    <div class="level-title">🌇 Gran Final del Corazón ❤️</div>
+    <div class="level-text">
+        Nivel 4 desbloqueado! 💛  
+        Tu sorpresa final: una actividad romántica juntos o un regalo especial 🌹
+    </div>
+</section>
+
+<script>
+function checkLevels() {
+    const now = new Date();
+    const h = now.getHours();
+    const m = now.getMinutes();
+
+    const levels = [
+        {id: "nivel1", startH:7, startM:0, endH:10, endM:5},
+        {id: "nivel2", startH:10, startM:0, endH:13, endM:5},
+        {id: "nivel3", startH:13, startM:0, endH:16, endM:5},
+        {id: "nivel4", startH:16, startM:0, endH:19, endM:5}
+    ];
+
+    levels.forEach(lvl => {
+        const sec = document.getElementById(lvl.id);
+        const start = lvl.startH*60 + lvl.startM;
+        const end = lvl.endH*60 + lvl.endM;
+        const current = h*60 + m;
+
+        if(current >= start && current <= end){
+            sec.classList.add("unlocked");
+        } else {
+            sec.classList.remove("unlocked");
+        }
+    });
+}
+
+// Actualiza cada minuto
+setInterval(checkLevels, 60000);
+checkLevels();
+</script>
+
+</body>
+</html>
