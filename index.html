@@ -6,6 +6,10 @@
 <title>🌸 Pequeñas Alegrías</title>
 
 <style>
+    .unlock-btn.completed{
+  background:#9b59b6;
+}
+
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
@@ -136,6 +140,59 @@ h2{
   font-size:.9em;
   color:#ff69b4;
 }
+/* ===== Modal ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal-box{
+  background:white;
+  padding:30px 40px;
+  border-radius:20px;
+  text-align:center;
+  animation:pop .3s ease;
+}
+
+.modal button{
+  margin-top:15px;
+  padding:8px 20px;
+  border:none;
+  border-radius:15px;
+  background:#ff69b4;
+  color:white;
+}
+
+@keyframes pop{
+  from{transform:scale(.7);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+/* ===== Animaciones ===== */
+.section.unlocked{
+  animation:glow 1.5s infinite alternate;
+}
+
+@keyframes glow{
+  from{box-shadow:0 0 10px #ffb6d9}
+  to{box-shadow:0 0 30px #ff69b4}
+}
+
+.locked .unlock-btn:active{
+  animation:shake .3s;
+}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-5px)}
+  75%{transform:translateX(5px)}
+}
+
 </style>
 </head>
 
@@ -184,8 +241,42 @@ h2{
 
 </div>
 
+<!-- MODAL BONITO -->
+<div id="modal" class="modal">
+  <div class="modal-box">
+    <p>💗 Aún no puedes acceder a esta sección</p>
+    <button onclick="closeModal()">Entendido</button>
+  </div>
+</div>
+
+<!-- SONIDO -->
+<audio id="unlockSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"></audio>
 
 <script>
+    /* ======================
+   PROGRESO DIARIO
+====================== */
+function getTodayKey(){
+  return new Date().toISOString().split("T")[0];
+}
+
+function loadProgress(){
+  const data=JSON.parse(localStorage.getItem("progress")) || {};
+  if(data.date !== getTodayKey()){
+    const fresh={date:getTodayKey(), done:[false,false,false,false]};
+    localStorage.setItem("progress",JSON.stringify(fresh));
+    return fresh;
+  }
+  return data;
+}
+
+function saveDone(index){
+  const data=loadProgress();
+  data.done[index]=true;
+  localStorage.setItem("progress",JSON.stringify(data));
+}
+
+
 /* ======================
    CORAZONES
 ====================== */
@@ -211,7 +302,18 @@ function enterSite(){
 
 
 /* ======================
-   TIEMPO RESTANTE (DIARIO)
+   MODAL
+====================== */
+function openModal(){
+  document.getElementById("modal").style.display="flex";
+}
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+
+/* ======================
+   TIEMPO RESTANTE
 ====================== */
 function getRemaining(targetHour){
   const now=new Date();
@@ -220,7 +322,7 @@ function getRemaining(targetHour){
   target.setHours(targetHour,0,0,0);
 
   if(now>=target){
-    target.setDate(target.getDate()+1); // mañana
+    target.setDate(target.getDate()+1);
   }
 
   const diff=target-now;
@@ -233,17 +335,40 @@ function getRemaining(targetHour){
 
 
 /* ======================
+   NAVEGACIÓN MEJORADA
+====================== */
+function goSection(index){
+
+  const sec=document.getElementById("section"+(index+1));
+
+  if(sec.classList.contains("unlocked")){
+    saveDone(index); // 🔥 guarda progreso
+    document.getElementById("unlockSound").play();
+
+    setTimeout(()=>{
+      window.location.href=(index+1)+".html";
+    },200);
+
+  }else{
+    openModal();
+  }
+}
+
+
+
+/* ======================
    ACTUALIZAR ESTADOS
 ====================== */
 function updateSections(){
 
-  const unlockTimes=[7,10,13,16];
+  const unlockTimes=[23,2,4,23];
 
   const sections=[
     section1,section2,section3,section4
   ];
 
   const now=new Date();
+  const progress=loadProgress(); // ← ya lo tienes bien aquí
 
   sections.forEach((sec,i)=>{
 
@@ -255,21 +380,40 @@ function updateSections(){
 
     const remaining=getRemaining(unlockTimes[i]);
 
-    // desbloqueado SOLO durante el día después de su hora
+    btn.onclick=()=>goSection(i);
+
     if(now>=todayUnlock && remaining.h>20){
+
       sec.classList.add("unlocked");
       sec.classList.remove("locked");
-      btn.textContent="Desbloqueado";
+
+      /* 🔥 AQUÍ VA EL PROGRESO */
+      if(progress.done[i]){
+        btn.textContent="Completado 💖";
+        btn.classList.add("completed");
+      }else{
+        btn.textContent="Desbloqueado";
+        btn.classList.remove("completed");
+      }
+
       timer.textContent="Disponible ahora 💖";
+
     }else{
+
       sec.classList.add("locked");
       sec.classList.remove("unlocked");
+
       btn.textContent="Bloqueado";
+      btn.classList.remove("completed");
+
       timer.textContent=`Se desbloqueará en ${remaining.h}h ${remaining.m}m`;
     }
+
   });
 }
 
+
+updateSections();
 setInterval(updateSections,60000);
 </script>
 
