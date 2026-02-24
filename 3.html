@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>💌 Mensaje para ti</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(180deg, #fff7d6, #ffe08a);
+      overflow: hidden;
+    }
+
+    /* tarjeta */
+    .card {
+      background: white;
+      padding: 45px 30px;
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, .15);
+      animation: fade 1s ease;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    h1 {
+      margin: 0;
+      color: #ffb703;
+      font-size: 2em;
+    }
+
+    p {
+      margin: 18px 0 25px;
+      color: #555;
+      font-size: 1.05em;
+      line-height: 1.5em;
+    }
+
+    /* audio bonito */
+    audio {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    /* botón */
+    button {
+      border: none;
+      padding: 12px 28px;
+      border-radius: 25px;
+      background: #ffb703;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* destellos */
+    .spark {
+      position: absolute;
+      font-size: 18px;
+      opacity: .5;
+      animation: fall 6s linear infinite;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-10vh) rotate(0)
+      }
+
+      to {
+        transform: translateY(110vh) rotate(360deg)
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>💌 Un mensajito para ti</h1>
+
+    <p>
+      Esta vez no quería que pensaras en el almuerzo…<br>
+      así que lo preparé yo para ti 💛<br>
+      Disfrútalo con calma.<br>
+      Espero que te guste. revisa el frigider 💕.
+    </p>
+
+    <!-- TU AUDIO AQUÍ -->
+    <audio controls autoplay>
+      <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <button onclick="volver()">Volver al inicio</button>
+  </div>
+
+  <script>
+    /* ===== volver + progreso ===== */
+    function volver() {
+      markDone();
+      window.location.href = "index.html";
+    }
+
+    /* guarda progreso de sección 3 */
+    function markDone() {
+      let p = JSON.parse(localStorage.getItem("progress")) || { done: [false, false, false, false] };
+      p.done[2] = true;
+      localStorage.setItem("progress", JSON.stringify(p));
+    }
+
+    /* destellos */
+    function spark() {
+      const s = document.createElement("div");
+      s.className = "spark";
+      s.innerHTML = "✨";
+      s.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 6000);
+    }
+    setInterval(spark, 600);
+  </script>
+
+</body>
+
+</html>
