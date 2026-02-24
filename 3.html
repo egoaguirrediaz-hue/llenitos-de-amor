@@ -44,10 +44,19 @@
       line-height: 1.5em;
     }
 
-    /* audio bonito */
-    audio {
+    /* ===== VIDEO ===== */
+    .video {
       width: 100%;
       margin-bottom: 20px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+    }
+
+    .video iframe {
+      width: 100%;
+      height: 220px;
+      border: none;
     }
 
     /* botón */
@@ -107,13 +116,17 @@
       Esta vez no quería que pensaras en el almuerzo…<br>
       así que lo preparé yo para ti 💛<br>
       Disfrútalo con calma.<br>
-      Espero que te guste. revisa el frigider 💕.
+      Espero que te guste. Revisa el refri 💕
     </p>
 
-    <!-- TU AUDIO AQUÍ -->
-    <audio controls autoplay>
-      <source src="audio.mp3" type="audio/mpeg">
-    </audio>
+    <!-- VIDEO YOUTUBE -->
+  <div class="video">
+  <iframe
+    src="https://drive.google.com/file/d/1Sl3LR4_RrJ-P2qPswDj7Zuyi8fpMb5ed/preview"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
+</div>
 
     <button onclick="volver()">Volver al inicio</button>
   </div>
@@ -127,7 +140,11 @@
 
     /* guarda progreso de sección 3 */
     function markDone() {
-      let p = JSON.parse(localStorage.getItem("progress")) || { done: [false, false, false, false] };
+      let p = JSON.parse(localStorage.getItem("progress")) || {
+        date: new Date().toISOString().split("T")[0],
+        done: [false, false, false, false]
+      };
+
       p.done[2] = true;
       localStorage.setItem("progress", JSON.stringify(p));
     }
@@ -141,6 +158,7 @@
       document.body.appendChild(s);
       setTimeout(() => s.remove(), 6000);
     }
+
     setInterval(spark, 600);
   </script>
 
