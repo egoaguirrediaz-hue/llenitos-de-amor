@@ -29,15 +29,6 @@
             max-width: 360px;
         }
 
-        /* FOTO */
-        .foto {
-            width: 190px;
-            border-radius: 22px;
-            margin-bottom: 18px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
-            animation: pop 1s ease;
-        }
-
         h1 {
             margin: 0;
             color: #ff8c69;
@@ -65,7 +56,6 @@
             transform: scale(1.05);
         }
 
-        /* animaciones */
         @keyframes fade {
             from {
                 opacity: 0;
@@ -78,19 +68,7 @@
             }
         }
 
-        @keyframes pop {
-            from {
-                transform: scale(.8);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* burbujas café */
+        /* burbujas de café */
         .bubble {
             position: absolute;
             font-size: 18px;
@@ -113,19 +91,15 @@
 <body>
 
     <div class="card">
-
-       <h1>☕ Media Mañana</h1>
+        <h1>☕ Media Mañana</h1>
 
         <p>
             Una pausa pequeña,<br>
             algo rico, algo dulce...<br>
             y sigue brillando como siempre ✨<br>
-            Busca en el frigider 1 y tu nombre encontrarás 🙈
+            Busca en el frigider 1 y tu nombre encontras 🙈
         </p>
-     <!-- IMAGEN DESDE GOOGLE DRIVE -->
-        <img class="foto"
-            src="https://drive.google.com/uc?export=view&id=1t-RYnDzvIhOkjlFsdGbm8ZwZH3yygrJu"
-            alt="media mañana">
+
         <button onclick="volver()">Volver al inicio</button>
     </div>
 
@@ -150,4 +124,6 @@
 
 </body>
 
+
 </html>
+
