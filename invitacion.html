@@ -23,25 +23,28 @@
       text-align:center;
       max-width:420px;
       box-shadow:0 15px 40px rgba(0,0,0,.15);
-      animation:fade 1s ease;
     }
 
     h1{color:#8b5cf6}
-    p{color:#555; line-height:1.6}
+    p{color:#555}
+
+    input, textarea{
+      width:100%;
+      margin:8px 0;
+      padding:10px;
+      border-radius:12px;
+      border:1px solid #ddd;
+    }
 
     button{
-      margin:8px;
-      padding:10px 18px;
+      width:100%;
+      padding:12px;
       border:none;
       border-radius:20px;
       background:#8b5cf6;
       color:white;
       cursor:pointer;
-    }
-
-    @keyframes fade{
-      from{opacity:0; transform:translateY(20px)}
-      to{opacity:1; transform:translateY(0)}
+      font-size:15px;
     }
   </style>
 </head>
@@ -51,7 +54,7 @@
   <div class="card">
     <h1>💌 Una cosita más…</h1>
 
-    <p>
+     <p>
       Hoy quise acompañarte en pequeños momentos,<br>
       desde la mañana hasta la noche.<br><br>
 
@@ -63,11 +66,32 @@
       y lo que más se te antoje comer.<br>
       Yo me encargo del resto 💜
     </p>
+    <input type="date" id="fecha">
+    <input type="time" id="hora">
+    <textarea id="antojo" placeholder="¿Qué se te antoja comer? 😋"></textarea>
 
-    <button>📅 Elegir día</button>
-    <button>⏰ Elegir hora</button>
-    <button>🍝 Se me antoja...</button>
+    <button onclick="enviarWhatsApp()">Enviar mi elección ✨</button>
   </div>
+
+  <script>
+    function enviarWhatsApp(){
+      const fecha = document.getElementById("fecha").value;
+      const hora = document.getElementById("hora").value;
+      const antojo = document.getElementById("antojo").value;
+
+      const mensaje =
+        "Hola 💜%0A" +
+        "Mi elección para nuestro almuerzo:%0A%0A" +
+        "📅 Día: " + fecha + "%0A" +
+        "⏰ Hora: " + hora + "%0A" +
+        "🍝 Antojo: " + antojo + "%0A%0A" +
+        "Nos vemos 🤭";
+
+      const url = "https://wa.me/51958206051?text=" + mensaje;
+
+      window.open(url, "_blank");
+    }
+  </script>
 
 </body>
 </html>
