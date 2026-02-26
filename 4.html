@@ -4,131 +4,76 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>🌙 Fin de Jornada</title>
+    <title>Nota</title>
 
     <style>
         body {
             margin: 0;
             height: 100vh;
-            font-family: 'Segoe UI', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(180deg, #1e1f2f, #2b2d42, #3a3d5c);
-            overflow: hidden;
-            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, #1e1f2f, #2b2d42);
         }
 
-        .card {
-            background: rgba(255, 255, 255, .08);
-            backdrop-filter: blur(10px);
-            padding: 50px;
-            border-radius: 30px;
+        .note-box {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, .25);
+            width: 320px;
             text-align: center;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, .4);
-            animation: fade 1s ease;
-            max-width: 380px;
         }
 
-        h1 {
-            margin: 0;
-            color: #ffd6ff;
-            font-size: 2.2em;
-        }
-
-        p {
-            margin: 18px 0 25px;
-            color: #eee;
-            font-size: 1.05em;
+        textarea {
+            width: 100%;
+            height: 120px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            resize: none;
+            font-size: 14px;
+            margin-bottom: 15px;
         }
 
         button {
             border: none;
-            padding: 12px 28px;
-            border-radius: 25px;
-            background: #c77dff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            background: #6c63ff;
             color: white;
-            font-size: 1em;
             cursor: pointer;
-            transition: .3s;
         }
 
-        button:hover {
-            transform: scale(1.05);
-        }
-
-        @keyframes fade {
-            from {
-                opacity: 0;
-                transform: translateY(20px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        /* estrellas */
-        .star {
-            position: absolute;
+        .mensaje {
+            margin-top: 10px;
+            color: #555;
             font-size: 14px;
-            opacity: .6;
-            animation: twinkle 4s infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-
-            0%,
-            100% {
-                opacity: .2
-            }
-
-            50% {
-                opacity: 1
-            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="card">
-        <h1>🌙 Fin de Jornada</h1>
+    <div class="note-box">
+        <h3>📝 Deja una nota</h3>
 
-        <p>
-           Hoy fue un día bonito…<br>
-            y tú lo hiciste aún más especial 💜<br>
-            Que esta noche descanses con una sonrisa.<br>
-            El locker 39 te espera 🙈
-        </p>
+        <textarea id="nota" placeholder="Escribe tu mensaje aquí..."></textarea>
 
-        <button onclick="volver()">Una sorpresa mas 💜</button>
+        <button onclick="guardar()">Guardar</button>
+
+        <div class="mensaje" id="msg"></div>
     </div>
 
-
     <script>
-        function volver() {
-            window.location.href = "invitacion.html";
+        function guardar() {
+            const texto = document.getElementById("nota").value;
+            document.getElementById("msg").innerText = "Nota guardada 💜";
+            console.log(texto);
         }
-
-        /* estrellas */
-        function star() {
-            const s = document.createElement("div");
-            s.className = "star";
-            s.innerHTML = "✦";
-            s.style.left = Math.random() * window.innerWidth + "px";
-            s.style.top = Math.random() * window.innerHeight + "px";
-            document.body.appendChild(s);
-            setTimeout(() => s.remove(), 4000);
-        }
-
-        setInterval(star, 300);
     </script>
 
 </body>
 
-
 </html>
-
