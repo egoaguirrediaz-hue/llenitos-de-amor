@@ -1,523 +1,106 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🌸 Un Día Hecho para Ti</title>
+<meta charset="UTF-8" />
+<title>🎁 Una sorpresa para ti</title>
 
-    <style>
-        .unlock-btn.completed {
-            background: #9b59b6;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #ffeef4;
-            overflow: hidden;
-        }
-
-        /* ======================
-   BANNER
-====================== */
-        #banner {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(#ffd6e7, #fff0f7);
-        }
-
-        #banner h1 {
-            font-size: 4em;
-            color: #ff69b4;
-            margin: 0;
-        }
-
-        #banner button {
-            margin-top: 40px;
-            padding: 15px 35px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 30px;
-            background: #ff69b4;
-            color: white;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        #banner button:hover {
-            transform: scale(1.05);
-        }
-
-        /* ======================
-   CORAZONES
-====================== */
-        .heart {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: pink;
-            transform: rotate(-45deg);
-            animation: floatUp 5s linear infinite;
-        }
-
-        .heart::before,
-        .heart::after {
-            content: "";
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: pink;
-            border-radius: 50%;
-        }
-
-        .heart::before {
-            top: -9px;
-            left: 0;
-        }
-
-        .heart::after {
-            left: 9px;
-            top: 0;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(-45deg);
-                opacity: 1
-            }
-
-            100% {
-                transform: translateY(-600px) rotate(-45deg);
-                opacity: 0
-            }
-        }
-
-        /* ======================
-   GRID 4 SECCIONES
-====================== */
-        #main {
-            display: none;
-            height: 100vh;
-            width: 100vw;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-        }
-
-        .section {
-            margin: 12px;
-            border-radius: 25px;
-            background: #fff0f7;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 25px;
-            opacity: .35;
-            transition: .4s;
-        }
-
-        .section.unlocked {
-            opacity: 1;
-            box-shadow: 0 0 25px rgba(255, 105, 180, .5);
-        }
-
-        h2 {
-            color: #ff69b4;
-            margin: 0 0 10px;
-        }
-
-        .unlock-btn {
-            margin-top: 15px;
-            padding: 10px 25px;
-            border: none;
-            border-radius: 20px;
-            font-size: 1em;
-        }
-
-        .locked .unlock-btn {
-            background: #ccc;
-            color: #666;
-        }
-
-        .unlocked .unlock-btn {
-            background: #ff69b4;
-            color: white;
-        }
-
-        .timer {
-            margin-top: 8px;
-            font-size: .9em;
-            color: #ff69b4;
-        }
-
-        /* ===== Modal ===== */
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .4);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-        }
-
-        .modal-box {
-            background: white;
-            padding: 30px 40px;
-            border-radius: 20px;
-            text-align: center;
-            animation: pop .3s ease;
-        }
-
-        .modal button {
-            margin-top: 15px;
-            padding: 8px 20px;
-            border: none;
-            border-radius: 15px;
-            background: #ff69b4;
-            color: white;
-        }
-
-        @keyframes pop {
-            from {
-                transform: scale(.7);
-                opacity: 0
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1
-            }
-        }
-
-        /* ===== Animaciones ===== */
-        .section.unlocked {
-            animation: glow 1.5s infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 10px #ffb6d9
-            }
-
-            to {
-                box-shadow: 0 0 30px #ff69b4
-            }
-        }
-
-        .locked .unlock-btn:active {
-            animation: shake .3s;
-        }
-
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0)
-            }
-
-            25% {
-                transform: translateX(-5px)
-            }
-
-            75% {
-                transform: translateX(5px)
-            }
-        }
-    /* =========================
-   📱 RESPONSIVE MOBILE
-========================= */
-@media (max-width: 768px){
-
-  body{
-    overflow:auto; /* evita cortes */
-  }
-
-  #main{
-    height:auto;
-    display:flex !important;
-    flex-direction:column;
-    padding-top:60px; /* espacio para barra */
-  }
-
-  .section{
-    width:92%;
-    margin:10px auto;
-    min-height:150px;
-    padding:20px;
-    border-radius:20px;
-  }
-
-  h2{
-    font-size:1.3em;
-  }
-
-  .unlock-btn{
-    width:100%;
-    font-size:.95em;
-  }
-
-  /* barra progreso móvil */
-  #progressBar{
-    width:92%;
-    height:22px;
-    top:8px;
-  }
-
-  #progressText{
-    font-size:12px;
-    line-height:22px;
-  }
-
-  /* banner móvil */
-  #banner h1{
-    font-size:2.2em;
-  }
-
-  #banner button{
-    width:85%;
-    font-size:1em;
-  }
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(180deg,#ffe4f2,#ffd6ff);
+  overflow:hidden;
 }
 
-    </style>
+.card{
+  background:white;
+  padding:45px 30px;
+  border-radius:30px;
+  text-align:center;
+  max-width:380px;
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
+  animation:fade 1s ease;
+}
+
+h1{ color:#c77dff; margin:0; }
+p{ color:#555; line-height:1.6 }
+
+button{
+  margin-top:18px;
+  padding:10px 22px;
+  border:none;
+  border-radius:20px;
+  background:#c77dff;
+  color:white;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none;
+  margin-top:15px;
+  font-weight:bold;
+  color:#9b59b6;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* confeti suave */
+.spark{
+  position:absolute;
+  font-size:18px;
+  animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
+}
+</style>
 </head>
 
 <body>
 
-    <!-- ======================
-     BANNER
-====================== -->
-    <div id="banner">
-        <h1>🌸 Pequeñas Alegrías</h1>
-        <button onclick="enterSite()">Si estás preparada, ingresa aquí</button>
-    </div>
+<div class="card">
+  <h1>🎧 Una cosita más…</h1>
 
-    <!-- ======================
-     CONTENIDO
-====================== -->
-    <div id="main">
+  <p>
+    Hace un tiempo me contaste algo<br>
+    y no se me olvidó.<br><br>
 
-        <div class="section" id="section1">
-            <h2>☀️ Buenos días, bonita</h2>
-            <p>8:00 am 🌅</p>
-            <button class="unlock-btn">Bloqueado</button>
-            <div class="timer"></div>
-        </div>
+    Así que hoy quise arreglarlo<br>
+    con un pequeño regalo pensado solo para ti 💜
+  </p>
 
-        <div class="section" id="section2">
-            <h2>☕ Un respiro dulce</h2>
-            <p>11:00 am 🕒</p>
-            <button class="unlock-btn">Bloqueado</button>
-            <div class="timer"></div>
-        </div>
+  <button onclick="mostrar()">Descubrir pista ✨</button>
 
-        <div class="section" id="section3">
-            <h2>🙈 Un mensajito para ti</h2>
-            <p>13:00 🌸</p>
-            <button class="unlock-btn">Bloqueado</button>
-            <div class="timer"></div>
-        </div>
+  <div id="msg" class="hidden">
+    Sorpresa<br>
+    in progress… 😉❄️
+  </div>
+</div>
 
-        <div class="section" id="section4">
-            <h2>✨ Un detalle para ti</h2>
-            <p>16:00 💖</p>
-            <button class="unlock-btn">Bloqueado</button>
-            <div class="timer"></div>
-        </div>
+<script>
+function mostrar(){
+  document.getElementById("msg").style.display="block";
+}
 
-    </div>
-
-    <!-- MODAL BONITO -->
-    <div id="modal" class="modal">
-        <div class="modal-box">
-            <p>💗 Aún no puedes acceder a esta sección</p>
-            <button onclick="closeModal()">Entendido</button>
-        </div>
-    </div>
-
-    <!-- SONIDO -->
-    <audio id="unlockSound" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"></audio>
-
-    <script>
-        /* ======================
-       PROGRESO DIARIO
-    ====================== */
-        function getTodayKey() {
-            return new Date().toISOString().split("T")[0];
-        }
-
-        function loadProgress() {
-            const data = JSON.parse(localStorage.getItem("progress")) || {};
-            if (data.date !== getTodayKey()) {
-                const fresh = { date: getTodayKey(), done: [false, false, false, false] };
-                localStorage.setItem("progress", JSON.stringify(fresh));
-                return fresh;
-            }
-            return data;
-        }
-
-        function saveDone(index) {
-            const data = loadProgress();
-            data.done[index] = true;
-            localStorage.setItem("progress", JSON.stringify(data));
-        }
-
-
-        /* ======================
-           CORAZONES
-        ====================== */
-        function createHeart() {
-            const h = document.createElement("div");
-            h.className = "heart";
-            h.style.left = Math.random() * window.innerWidth + "px";
-            h.style.animationDuration = (3 + Math.random() * 3) + "s";
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }
-        setInterval(createHeart, 300);
-
-
-        /* ======================
-           ENTRAR
-        ====================== */
-        function enterSite() {
-            document.getElementById("banner").style.display = "none";
-            document.getElementById("main").style.display = "grid";
-            updateSections();
-        }
-
-
-        /* ======================
-           MODAL
-        ====================== */
-        function openModal() {
-            document.getElementById("modal").style.display = "flex";
-        }
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
-        }
-
-
-        /* ======================
-           TIEMPO RESTANTE
-        ====================== */
-        function getRemaining(targetHour) {
-            const now = new Date();
-
-            let target = new Date();
-            target.setHours(targetHour, 0, 0, 0);
-
-            if (now >= target) {
-                target.setDate(target.getDate() + 1);
-            }
-
-            const diff = target - now;
-
-            const h = Math.floor(diff / 3600000);
-            const m = Math.floor((diff % 3600000) / 60000);
-
-            return { diff, h, m };
-        }
-
-
-        /* ======================
-           NAVEGACIÓN MEJORADA
-        ====================== */
-        function goSection(index) {
-
-            const sec = document.getElementById("section" + (index + 1));
-
-            if (sec.classList.contains("unlocked")) {
-                saveDone(index); // 🔥 guarda progreso
-                document.getElementById("unlockSound").play();
-
-                setTimeout(() => {
-                    window.location.href = (index + 1) + ".html";
-                }, 200);
-
-            } else {
-                openModal();
-            }
-        }
-
-
-
-        /* ======================
-           ACTUALIZAR ESTADOS
-        ====================== */
-        function updateSections() {
-
-            const unlockTimes = [07,07,13,16];
-
-            const sections = [
-                section1, section2, section3, section4
-            ];
-
-            const now = new Date();
-            const progress = loadProgress(); // ← ya lo tienes bien aquí
-
-            sections.forEach((sec, i) => {
-
-                const btn = sec.querySelector(".unlock-btn");
-                const timer = sec.querySelector(".timer");
-
-                const todayUnlock = new Date();
-                todayUnlock.setHours(unlockTimes[i], 0, 0, 0);
-
-                const remaining = getRemaining(unlockTimes[i]);
-
-                btn.onclick = () => goSection(i);
-
-                if (now >= todayUnlock && remaining.h > 20) {
-
-                    sec.classList.add("unlocked");
-                    sec.classList.remove("locked");
-
-                    /* 🔥 AQUÍ VA EL PROGRESO */
-                    if (progress.done[i]) {
-                        btn.textContent = "Completado 💖";
-                        btn.classList.add("completed");
-                    } else {
-                        btn.textContent = "Desbloqueado";
-                        btn.classList.remove("completed");
-                    }
-
-                    timer.textContent = "Disponible ahora 💖";
-
-                } else {
-
-                    sec.classList.add("locked");
-                    sec.classList.remove("unlocked");
-
-                    btn.textContent = "Bloqueado";
-                    btn.classList.remove("completed");
-
-                    timer.textContent = `Se desbloqueará en ${remaining.h}h ${remaining.m}m`;
-                }
-
-            });
-        }
-
-
-        updateSections();
-        setInterval(updateSections, 60000);
-    </script>
+function spark(){
+  const s=document.createElement("div");
+  s.className="spark";
+  s.innerHTML="✨";
+  s.style.left=Math.random()*window.innerWidth+"px";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),5000);
+}
+setInterval(spark,400);
+</script>
 
 </body>
-
-
 </html>
-
-
-
-
-
-
-
