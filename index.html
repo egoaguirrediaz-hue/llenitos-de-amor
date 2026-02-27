@@ -1,344 +1,203 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Un mensajito para ti 💜</title>
+<title>Sorpresita secreta 💜</title>
 <style>
-
+/* ===== BODY ===== */
 body{
-
-  margin:0;
-
-  height:100vh;
-
-  font-family:'Segoe UI',sans-serif;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  background:linear-gradient(180deg,#ffe6f2,#f3e8ff);
-
-  overflow:hidden;
-
+ margin:0;
+ height:100vh;
+ font-family:'Segoe UI',sans-serif;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ background:linear-gradient(180deg,#ffe6f2,#f3e8ff);
+ overflow:hidden;
 }
-
+/* ===== CARDS ===== */
 .card{
-
-  background:white;
-
-  padding:32px;
-
-  border-radius:28px;
-
-  text-align:center;
-
-  max-width:420px;
-
-  width:90%;
-
-  box-shadow:0 15px 45px rgba(0,0,0,.15);
-
-  animation:fade 1s ease;
-
+ background:white;
+ width:90%;
+ max-width:420px;
+ padding:28px;
+ border-radius:24px;
+ text-align:center;
+ box-shadow:0 15px 45px rgba(0,0,0,.15);
 }
-
-h1{ color:#c77dff; }
-
+h2{ color:#c77dff; }
 p{
-
-  color:#555;
-
-  line-height:1.6;
-
-  font-size:.95em;
-
+ font-size:.95em;
+ line-height:1.5;
+ color:#555;
 }
-
+/* ===== BUTTON ===== */
 button{
-
-  border:none;
-
-  padding:10px 18px;
-
-  border-radius:20px;
-
-  margin:6px;
-
-  cursor:pointer;
-
-  transition:.25s;
-
+ margin-top:14px;
+ padding:10px 18px;
+ border:none;
+ border-radius:18px;
+ background:#c77dff;
+ color:white;
+ cursor:pointer;
+ transition:.25s;
 }
-
-.like{ background:#c77dff; color:white; }
-
-.dislike{ background:#ddd; }
-
-button:hover{ transform:scale(1.05); }
-
-.section{
-
-  margin-top:18px;
-
-  background:#f6f0ff;
-
-  padding:12px;
-
-  border-radius:15px;
-
+button:hover{
+ transform:scale(1.05);
 }
-
-#count{
-
-  margin-top:6px;
-
-  font-weight:bold;
-
-  color:#c77dff;
-
+/* ===== PIN INPUT ===== */
+input{
+ margin-top:12px;
+ padding:10px;
+ font-size:18px;
+ text-align:center;
+ width:120px;
+ border-radius:12px;
+ border:1px solid #ddd;
 }
-
-/* popup */
-
+/* ===== MODAL ===== */
 .modal{
-
-  position:fixed;
-
-  inset:0;
-
-  display:none;
-
-  background:rgba(0,0,0,.5);
-
-  justify-content:center;
-
-  align-items:center;
-
+ position:fixed;
+ inset:0;
+ display:none;
+ background:rgba(0,0,0,.5);
+ justify-content:center;
+ align-items:center;
 }
-
 .modal-box{
-
-  background:white;
-
-  padding:20px;
-
-  border-radius:18px;
-
-  width:85%;
-
-  max-width:320px;
-
-  text-align:center;
-
+ background:white;
+ padding:24px;
+ border-radius:18px;
+ width:85%;
+ max-width:300px;
+ text-align:center;
 }
-
-textarea{
-
-  width:100%;
-
-  height:70px;
-
-  margin-top:10px;
-
-  border-radius:10px;
-
-  padding:8px;
-
-}
-
-.send{
-
-  background:#c77dff;
-
-  color:white;
-
-  margin-top:10px;
-
-}
-
-/* corazones */
-
+/* ===== corazones ===== */
 .heart{
-
-  position:absolute;
-
-  font-size:14px;
-
-  opacity:.4;
-
-  animation:fall 7s linear infinite;
-
+ position:absolute;
+ font-size:14px;
+ opacity:.3;
+ animation:fall 7s linear infinite;
 }
-
 @keyframes fall{
-
-  from{transform:translateY(-10vh)}
-
-  to{transform:translateY(110vh)}
-
+ from{transform:translateY(-10vh)}
+ to{transform:translateY(110vh)}
 }
-
-@keyframes fade{
-
-  from{opacity:0; transform:translateY(20px)}
-
-  to{opacity:1; transform:translateY(0)}
-
+.error{
+ color:#ff5c8a;
+ font-size:.9em;
+ margin-top:8px;
 }
 </style>
 </head>
-
 <body>
-<div class="card">
-<h1>💜 Estos días contigo…</h1>
+<!-- ========= PIN SCREEN ========= -->
+<div class="card" id="lockScreen">
+<h2>🔐 Mensaje secreto</h2>
 <p>
-Holi Yess, ayer fueron cuatro momentitos que quise hacerte sentir especial…  
-tu desayunito, el detalle dulce, tu almuercito y ese kit de relax para tus momentos tensos ✨
-<br><br>
-Hoy no deje de mirarte estabas lindisima 💕. De esas veces que uno piensa:
-Me encanta cuidarte, consentirte, verte feliz y saber que puedo estar
-cerquita de ti. De verdad me gustas muchísimo… más de lo que imaginas.<br><br>
-Todavía recuerdo ese besito en la frente de ayer 🙈…  
-y se me queda el corazón todo suavecito cada vez que lo pienso 💜
+   Solo tú puedes abrir esto 💜<br>
+   Ingresa el código especial
 </p>
-<!-- BOTONES FEEDBACK -->
-<button class="like" onclick="openModal()">💜 Me gustó</button>
-<button class="dislike">🙈 No me gustó</button>
-
-<!-- SECCIÓN NUEVA (sorpresa) -->
-<div class="section">
-<button onclick="tryOpen()">🎁 Cargando sorpresa cumpleañera…</button>
-<div id="status">Aún no disponible ✨</div>
-<div id="count"></div>
-</div>
+<input id="pin" type="password" maxlength="4" placeholder="••••">
+<br>
+<button onclick="checkPin()">Entrar</button>
+<div class="error" id="errorMsg"></div>
 </div>
 
-<!-- POPUP MENSAJE WHATSAPP -->
-<div class="modal" id="modal">
+<!-- ========= MAIN CONTENT ========= -->
+<div class="card" id="content" style="display:none;"></div>
+
+<!-- ========= POPUP FINAL ========= -->
+<div class="modal" id="finalModal">
 <div class="modal-box">
-<b>Como te sentiste  😊</b>
-<textarea id="msg"></textarea>
-<button class="send" onclick="sendWhats()">Enviar 💌</button>
-</div>
-</div>
-
-<!-- POPUP BLOQUEADO -->
-<div class="modal" id="lockModal">
-<div class="modal-box">
-
-    In progress… 🙈
+<p>
+     No sé si te conocí en otra vida…<br><br>
+     pero en esta quiero seguir conociéndote todo lo que me falta 💜<br>
+     paso a paso, contigo.
+</p>
+<button onclick="closeModal()">💗</button>
 </div>
 </div>
 
 <script>
+/* ================= PIN ================= */
+const correctPin = "0703";
+let attempts = 0;
+function checkPin(){
+ const val = document.getElementById("pin").value;
+ if(val === correctPin){
+   document.getElementById("lockScreen").style.display="none";
+   document.getElementById("content").style.display="block";
+   show();
+ }else{
+   attempts++;
+   document.getElementById("errorMsg").innerText =
+     `PIN incorrecto… ahora me debes ${attempts} besito(s) 🙈`;
+ }
+}
 
-/* ===== WhatsApp ===== */
+/* ================= PISTAS ================= */
+const steps = [
+`<h2>Pista 1 🌷</h2>
+<p>
+Algo que me encanta de ti…<br><br>
+Eres súper dulce sin intentarlo.<br>
+Siempre pendiente de todos.<br>
+Tienes un corazón gigante 💜<br><br>
+Que tengas un lindo viernes ✨.
+</p>
+<button onclick="next()">Siguiente →</button>`,
+`<h2>Pista 2 ✨</h2>
+<p>
+Tu sonrisa debería venir con advertencia…<br>
+porque me desarma completito 😅<br><br>
+En el frigider en la tapa hay dos cositas pequeñas para ti.
+</p>
+<button onclick="next()">Siguiente →</button>`,
+`<h2>Pista 3 💛</h2>
+<p>
+Admiro muchísimo tu fuerza.<br>
+Todo lo que haces por los bebes y salir adalente<br>
+de verdad eres increíble.<br><br>
+Me encanatas 🙈.
+</p>
+<button onclick="next()">Siguiente →</button>`,
+`<h2>🎁 Sorpresa final</h2>
+<p>
+Porque te mereces detalles bonitos…<br><br>
+Revisa donde encontraste tu pastel de acelga 🙈<br>
+Hay algo esperándote ahí.
+</p>
+<button onclick="openModal()">Abrir mensajito 💌</button>`
+];
+let index = 0;
+function show(){
+ document.getElementById("content").innerHTML = steps[index];
+}
+function next(){
+ index++;
+ show();
+}
 
-const phone="51958206051";
-
+/* ================= MODAL ================= */
 function openModal(){
-
-  document.getElementById("modal").style.display="flex";
-
+ document.getElementById("finalModal").style.display="flex";
+}
+function closeModal(){
+ document.getElementById("finalModal").style.display="none";
 }
 
-function sendWhats(){
- const text = document.getElementById("msg").value;
- const template =
-`Hola 💜
-Quería contarte cómo me sentí hoy…
-${text} ✨`;
- const url = `https://wa.me/${phone}?text=${encodeURIComponent(template)}`;
- window.open(url,"_blank");
-}
-
-/* ===== Contador hasta 4 marzo ===== */
-
-const target=new Date("2026-03-04T00:00:00");
-
-function update(){
-
-  const now=new Date();
-
-  const diff=target-now;
-
-  if(diff<=0){
-
-    document.getElementById("status").innerText="Disponible ahora 💜";
-
-    document.getElementById("count").innerText="✨";
-
-    return;
-
-  }
-
-  const total=Math.floor(diff/1000);
-
-  const d=Math.floor(total/86400);
-
-  const h=Math.floor((total%86400)/3600);
-
-  const m=Math.floor((total%3600)/60);
-
-  const s=total%60;
-
-  document.getElementById("count").innerText=
-
-    `${d}d ${h}h ${m}m ${s}s`;
-
-}
-
-setInterval(update,1000);
-
-update();
-
-
-/* ===== botón sorpresa ===== */
-
-function tryOpen(){
-
-  if(new Date()<target){
-
-    document.getElementById("lockModal").style.display="flex";
-
-    setTimeout(()=>lockModal.style.display="none",1500);
-
-  }else{
-
-    window.location.href="sorpresa-final.html";
-
-  }
-
-}
-
-
-/* ===== corazones ===== */
-
+/* ================= CORAZONES ================= */
 function heart(){
-
-  const h=document.createElement("div");
-
-  h.className="heart";
-
-  h.innerHTML="💗";
-
-  h.style.left=Math.random()*window.innerWidth+"px";
-
-  document.body.appendChild(h);
-
-  setTimeout(()=>h.remove(),7000);
-
+ const h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="💗";
+ h.style.left=Math.random()*window.innerWidth+"px";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),7000);
 }
-
-setInterval(heart,700);
+setInterval(heart,800);
 </script>
 </body>
 </html>
- 
-
-
-
