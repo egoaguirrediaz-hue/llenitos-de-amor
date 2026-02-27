@@ -248,15 +248,14 @@ function openModal(){
 }
 
 function sendWhats(){
-
-  const text=document.getElementById("msg").value;
-
-  const url=`https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-
-  window.open(url,"_blank");
-
+ const text = document.getElementById("msg").value;
+ const template =
+`Hola 💜
+Quería contarte cómo me sentí hoy…
+${text} ✨`;
+ const url = `https://wa.me/${phone}?text=${encodeURIComponent(template)}`;
+ window.open(url,"_blank");
 }
-
 
 /* ===== Contador hasta 4 marzo ===== */
 
@@ -341,4 +340,5 @@ setInterval(heart,700);
 </body>
 </html>
  
+
 
