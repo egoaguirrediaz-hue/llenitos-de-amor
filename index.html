@@ -3,75 +3,60 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sorpresita secreta 💜</title>
+<title>Sorpresa en preparación 💜</title>
 <style>
-/* ===== BODY ===== */
+/* ===== Fondo romántico suave ===== */
 body{
  margin:0;
  height:100vh;
- font-family:'Segoe UI',sans-serif;
  display:flex;
  justify-content:center;
  align-items:center;
- background:linear-gradient(180deg,#ffe6f2,#f3e8ff);
+ font-family:'Segoe UI',sans-serif;
+ background:linear-gradient(180deg,#f8e8ff,#ffeaf3);
  overflow:hidden;
 }
-/* ===== CARDS ===== */
+/* ===== Tarjeta ===== */
 .card{
  background:white;
  width:90%;
  max-width:420px;
- padding:28px;
- border-radius:24px;
+ padding:35px 28px;
+ border-radius:26px;
  text-align:center;
- box-shadow:0 15px 45px rgba(0,0,0,.15);
+ box-shadow:0 20px 60px rgba(0,0,0,.15);
+ position:relative;
 }
-h2{ color:#c77dff; }
+/* ===== Títulos ===== */
+h1{
+ font-size:1.5em;
+ color:#b07dff;
+ margin-bottom:10px;
+}
 p{
- font-size:.95em;
- line-height:1.5;
  color:#555;
+ font-size:.95em;
 }
-/* ===== BUTTON ===== */
-button{
- margin-top:14px;
- padding:10px 18px;
- border:none;
- border-radius:18px;
- background:#c77dff;
- color:white;
- cursor:pointer;
- transition:.25s;
-}
-button:hover{
- transform:scale(1.05);
-}
-/* ===== PIN INPUT ===== */
-input{
+/* ===== Contador ===== */
+.countdown{
+ font-size:2.2em;
+ font-weight:bold;
+ color:#c77dff;
  margin-top:12px;
- padding:10px;
- font-size:18px;
- text-align:center;
- width:120px;
- border-radius:12px;
- border:1px solid #ddd;
 }
-/* ===== MODAL ===== */
-.modal{
- position:fixed;
- inset:0;
- display:none;
- background:rgba(0,0,0,.5);
- justify-content:center;
- align-items:center;
-}
-.modal-box{
- background:white;
- padding:24px;
- border-radius:18px;
- width:85%;
- max-width:300px;
- text-align:center;
+/* ===== Sello estilo carta ===== */
+.stamp{
+ position:absolute;
+ top:-15px;
+ right:-15px;
+ background:#ff8fab;
+ color:white;
+ padding:12px 18px;
+ border-radius:50%;
+ font-size:.7em;
+ font-weight:bold;
+ transform:rotate(-18deg);
+ box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 /* ===== corazones ===== */
 .heart{
@@ -84,111 +69,77 @@ input{
  from{transform:translateY(-10vh)}
  to{transform:translateY(110vh)}
 }
-.error{
+.ready{
  color:#ff5c8a;
- font-size:.9em;
- margin-top:8px;
+ font-weight:bold;
+ font-size:1.2em;
+ margin-top:12px;
 }
 </style>
 </head>
 <body>
-<!-- ========= PIN SCREEN ========= -->
-<div class="card" id="lockScreen">
-<h2>🔐 Mensaje secreto</h2>
+<div class="card">
+<!-- sello fecha -->
+<div class="stamp" id="stampDate"></div>
+<h1>💌 Trabajando en tu sorpresa</h1>
 <p>
-   Solo tú puedes abrir esto 💜<br>
-   Ingresa el código especial
+   Estoy preparando algo bonito para ti…<br>
+   con calma, con cariño y con muchos nerviositos 🫣💜
 </p>
-<input id="pin" type="password" maxlength="4" placeholder="••••">
-<br>
-<button onclick="checkPin()">Entrar</button>
-<div class="error" id="errorMsg"></div>
-</div>
-
-<!-- ========= MAIN CONTENT ========= -->
-<div class="card" id="content" style="display:none;"></div>
-
-<!-- ========= POPUP FINAL ========= -->
-<div class="modal" id="finalModal">
-<div class="modal-box">
-<p>
-     No sé si te conocí en otra vida…<br><br>
-     pero en esta quiero seguir conociéndote todo lo que me falta 💜<br>
-     paso a paso, contigo.
+<p style="margin-top:18px;">
+   Disponible en:
 </p>
-<button onclick="closeModal()">💗</button>
-</div>
+<div class="countdown" id="timer">00:00:00</div>
+<div id="readyMsg"></div>
 </div>
 
 <script>
-/* ================= PIN ================= */
-const correctPin = "0703";
-let attempts = 0;
-function checkPin(){
- const val = document.getElementById("pin").value;
- if(val === correctPin){
-   document.getElementById("lockScreen").style.display="none";
-   document.getElementById("content").style.display="block";
-   show();
- }else{
-   attempts++;
-   document.getElementById("errorMsg").innerText =
-     `PIN incorrecto… ahora me debes ${attempts} besito(s) 🙈`;
+/* =========================
+  FECHA OBJETIVO → LUNES 00:00
+========================= */
+function nextMondayMidnight(){
+ const now = new Date();
+ let day = now.getDay(); // 0 domingo
+ let diff = (8 - day) % 7;
+ if(diff === 0) diff = 7;
+ const monday = new Date(now);
+ monday.setDate(now.getDate() + diff);
+ monday.setHours(0,0,0,0);
+ return monday;
+}
+const target = nextMondayMidnight();
+
+/* =========================
+  CONTADOR
+========================= */
+function updateTimer(){
+ const now = new Date();
+ const diff = target - now;
+ if(diff <= 0){
+   document.getElementById("timer").style.display="none";
+   document.getElementById("readyMsg").innerHTML =
+     `<div class="ready">✨ Ya está listo… ábrelo 💜</div>`;
+   return;
  }
+ const h = Math.floor(diff / (1000*60*60));
+ const m = Math.floor((diff / (1000*60)) % 60);
+ const s = Math.floor((diff/1000)%60);
+ document.getElementById("timer").innerText =
+   `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 }
+setInterval(updateTimer,1000);
+updateTimer();
 
-/* ================= PISTAS ================= */
-const steps = [
-`<h2>Pista 1 🌷</h2>
-<p>
-Algo que me encanta de ti…<br><br>
-Eres súper dulce sin intentarlo.<br>
-Siempre pendiente de todos.<br>
-Tienes un corazón gigante 💜<br><br>
-Que tengas un lindo viernes ✨.
-</p>
-<button onclick="next()">Siguiente →</button>`,
-`<h2>Pista 2 ✨</h2>
-<p>
-Tu sonrisa debería venir con advertencia…<br>
-porque me desarma completito 😅<br><br>
-En el frigider en la tapa hay dos cositas pequeñas para ti.
-</p>
-<button onclick="next()">Siguiente →</button>`,
-`<h2>Pista 3 💛</h2>
-<p>
-Admiro muchísimo tu fuerza.<br>
-Todo lo que haces por los bebes y salir adalente<br>
-de verdad eres increíble.<br><br>
-Me encanatas 🙈.
-</p>
-<button onclick="next()">Siguiente →</button>`,
-`<h2>🎁 Sorpresa final</h2>
-<p>
-Porque te mereces detalles bonitos…<br><br>
-Revisa donde encontraste tu pastel de acelga 🙈<br>
-Hay algo esperándote ahí.
-</p>
-<button onclick="openModal()">Abrir mensajito 💌</button>`
-];
-let index = 0;
-function show(){
- document.getElementById("content").innerHTML = steps[index];
-}
-function next(){
- index++;
- show();
-}
+/* =========================
+  SELLO DE FECHA
+========================= */
+const stamp = document.getElementById("stampDate");
+const today = new Date().toLocaleDateString("es-PE");
+stamp.innerText = today;
 
-/* ================= MODAL ================= */
-function openModal(){
- document.getElementById("finalModal").style.display="flex";
-}
-function closeModal(){
- document.getElementById("finalModal").style.display="none";
-}
-
-/* ================= CORAZONES ================= */
+/* =========================
+  CORAZONES
+========================= */
 function heart(){
  const h=document.createElement("div");
  h.className="heart";
@@ -197,7 +148,7 @@ function heart(){
  document.body.appendChild(h);
  setTimeout(()=>h.remove(),7000);
 }
-setInterval(heart,800);
+setInterval(heart,900);
 </script>
 </body>
 </html>
