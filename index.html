@@ -167,11 +167,25 @@ Solo usted posee el código secreto
 <script>
 
 /* ===== WHATSAPP ===== */
-function sendMsg() {
-    const text = document.getElementById("msg").value; const backLink =
-        "https://egoaguirrediaz-hue.github.io/llenitos-de-amor/index.html#pin"; const fullMessage = `Hola Cris 💜 Estuve
-pensando en lo que espero de esta semana… ${text} Estoy emocionada por lo que viene ✨ Sigo por aquí 👇 ${backLink}`;
-    const url = `https://wa.me/51958206051?text=${encodeURIComponent(fullMessage)}`; window.location.href = url;
+function sendMsg(){
+
+  const text = document.getElementById("msg").value;
+
+  const backLink = "https://egoaguirrediaz-hue.github.io/llenitos-de-amor/index.html#pin";
+
+  const fullMessage =
+`Hola Cris ✨
+
+Estuve pensando en lo que espero de esta semana…
+${text}
+
+Estoy emocionada por lo que viene ✨
+Sigo por aquí 👇
+${backLink}`;
+
+  const url = `https://wa.me/51958206051?text=${encodeURIComponent(fullMessage)}`;
+
+  window.location.href = url;
 }
 
 /* ===== AUTO IR A PIN SI VIENE DEL LINK ===== */
@@ -258,5 +272,6 @@ setInterval(heart,1100);
 
 </body>
 </html>
+
 
 
