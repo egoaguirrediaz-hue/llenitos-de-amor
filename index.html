@@ -20,25 +20,33 @@ body{
 
   font-family:'Cormorant Garamond', serif;
 
+  /* textura pergamino */
   background:
-  radial-gradient(circle at 20% 20%, #f8efe6 0%, transparent 40%),
-  radial-gradient(circle at 80% 80%, #efe3d6 0%, transparent 40%),
-  linear-gradient(180deg,#f6eee6,#e9dccb);
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.7) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(255,255,255,.5) 0%, transparent 40%),
+    linear-gradient(180deg,#f6efe6,#e8dccb,#dfd0bb);
 
   overflow:hidden;
 }
 
 /* ===== TARJETA ESTILO CARTA ===== */
 .card{
-  background:#fffdf9;
+  background:#fffaf3;
+
   width:90%;
   max-width:440px;
-  padding:34px;
-  border-radius:18px;
-  text-align:center;
+  padding:36px;
 
-  box-shadow:0 20px 60px rgba(0,0,0,.18);
-  border:1px solid #e6d8c8;
+  border-radius:14px;
+
+  /* borde tipo marco antiguo */
+  border:2px solid #e2d3c3;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.15),
+    inset 0 0 40px rgba(0,0,0,.05);
+
+  text-align:center;
 }
 
 h2{
@@ -160,13 +168,30 @@ Solo usted posee el código secreto
 
 /* ===== WHATSAPP ===== */
 function sendMsg(){
-  const text=document.getElementById("msg").value;
-  const url=`https://wa.me/51958206051?text=${encodeURIComponent(text)}`;
-  window.open(url,"_blank");
 
-  intro.style.display="none";
-  pinBox.style.display="block";
+  const text = document.getElementById("msg").value;
+
+  // 👇 tu URL real del sitio
+  const backLink = "https://tusitio.com/index.html#pin";
+
+  const fullMessage =
+    text +
+    "\n\n✨ Continúa aquí:\n" +
+    backLink;
+
+  const url = `https://wa.me/51958206051?text=${encodeURIComponent(fullMessage)}`;
+
+  window.location.href = url; // redirige directo
 }
+
+/* ===== AUTO IR A PIN SI VIENE DEL LINK ===== */
+window.onload = function(){
+  if(window.location.hash === "#pin"){
+    intro.style.display="none";
+    pinBox.style.display="block";
+  }
+}
+
 
 /* ===== PIN ===== */
 const correct="0703";
@@ -237,6 +262,7 @@ function heart(){
   setTimeout(()=>h.remove(),9000);
 }
 setInterval(heart,1100);
+
 
 </script>
 
