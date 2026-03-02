@@ -3,152 +3,242 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sorpresa en preparación 💜</title>
+
+<title>Una invitación especial ✨</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
 <style>
-/* ===== Fondo romántico suave ===== */
+
+/* ===== FONDO ELEGANTE ===== */
 body{
- margin:0;
- height:100vh;
- display:flex;
- justify-content:center;
- align-items:center;
- font-family:'Segoe UI',sans-serif;
- background:linear-gradient(180deg,#f8e8ff,#ffeaf3);
- overflow:hidden;
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-family:'Cormorant Garamond', serif;
+
+  background:
+  radial-gradient(circle at 20% 20%, #f8efe6 0%, transparent 40%),
+  radial-gradient(circle at 80% 80%, #efe3d6 0%, transparent 40%),
+  linear-gradient(180deg,#f6eee6,#e9dccb);
+
+  overflow:hidden;
 }
-/* ===== Tarjeta ===== */
+
+/* ===== TARJETA ESTILO CARTA ===== */
 .card{
- background:white;
- width:90%;
- max-width:420px;
- padding:35px 28px;
- border-radius:26px;
- text-align:center;
- box-shadow:0 20px 60px rgba(0,0,0,.15);
- position:relative;
+  background:#fffdf9;
+  width:90%;
+  max-width:440px;
+  padding:34px;
+  border-radius:18px;
+  text-align:center;
+
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  border:1px solid #e6d8c8;
 }
-/* ===== Títulos ===== */
-h1{
- font-size:1.5em;
- color:#b07dff;
- margin-bottom:10px;
+
+h2{
+  font-family:'Playfair Display', serif;
+  letter-spacing:1px;
+  color:#7a5c3e;
+  margin-bottom:10px;
 }
+
 p{
- color:#555;
- font-size:.95em;
+  color:#5b4a3b;
+  line-height:1.6;
+  font-size:1.05em;
 }
-/* ===== Contador ===== */
-.countdown{
- font-size:2.2em;
- font-weight:bold;
- color:#c77dff;
- margin-top:12px;
+
+/* ===== INPUTS ===== */
+textarea,input{
+  width:100%;
+  padding:10px;
+  margin-top:12px;
+  border-radius:10px;
+  border:1px solid #d8c8b8;
+  font-family:inherit;
+  background:#fff;
 }
-/* ===== Sello estilo carta ===== */
-.stamp{
- position:absolute;
- top:-15px;
- right:-15px;
- background:#ff8fab;
- color:white;
- padding:12px 18px;
- border-radius:50%;
- font-size:.7em;
- font-weight:bold;
- transform:rotate(-18deg);
- box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+/* ===== BOTÓN ESTILO ORO ===== */
+button{
+  margin-top:14px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:linear-gradient(45deg,#b9935a,#d6b77a);
+  color:white;
+  font-family:'Playfair Display', serif;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:.3s;
 }
-/* ===== corazones ===== */
+
+button:hover{
+  transform:scale(1.05);
+}
+
+/* ===== DIAS ===== */
+.day{
+  padding:14px;
+  margin:10px 0;
+  border-radius:12px;
+  background:#f3e8dc;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.lock{
+  opacity:.4;
+}
+
+/* ===== FLORECITAS SUAVES ===== */
 .heart{
- position:absolute;
- font-size:14px;
- opacity:.3;
- animation:fall 7s linear infinite;
+  position:absolute;
+  font-size:12px;
+  opacity:.18;
+  animation:fall 9s linear infinite;
 }
+
 @keyframes fall{
- from{transform:translateY(-10vh)}
- to{transform:translateY(110vh)}
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
 }
-.ready{
- color:#ff5c8a;
- font-weight:bold;
- font-size:1.2em;
- margin-top:12px;
-}
+
 </style>
 </head>
+
 <body>
-<div class="card">
-<!-- sello fecha -->
-<div class="stamp" id="stampDate"></div>
-<h1>💌 Trabajando en tu sorpresa</h1>
+
+<!-- INTRO -->
+<div class="card" id="intro">
+<h2>Mi querida reina 👑</h2>
+
 <p>
-   Estoy preparando algo bonito para ti…<br>
-   con calma, con cariño y con muchos nerviositos 🫣💜
+He preparado algo especial para usted…<br>
+una pequeña semana llena de detalles,<br>
+pensados únicamente para su sonrisa ✨<br><br>
+
+Antes de comenzar,<br>
+dígame… ¿qué espera de estos días?
 </p>
-<p style="margin-top:18px;">
-   Disponible en:
-</p>
-<div class="countdown" id="timer">00:00:00</div>
-<div id="readyMsg"></div>
+
+<textarea id="msg" placeholder="Escriba aquí su respuesta..."></textarea>
+<button onclick="sendMsg()">Enviar carta 💌</button>
 </div>
 
+
+<!-- PIN -->
+<div class="card" id="pinBox" style="display:none;">
+<h2>Acceso privado 🔐</h2>
+
+<p>
+Solo usted posee el código secreto
+</p>
+
+<input id="pin" type="password" maxlength="4" placeholder="••••">
+<button onclick="checkPin()">Entrar</button>
+
+<p id="error" style="color:#b85c5c"></p>
+</div>
+
+
+<!-- HOME -->
+<div class="card" id="home" style="display:none;">
+<h2>Semana especial ✨</h2>
+<p id="countdown"></p>
+<div id="days"></div>
+</div>
+
+
 <script>
-/* =========================
-  FECHA OBJETIVO → LUNES 00:00
-========================= */
-function nextMondayMidnight(){
- const now = new Date();
- let day = now.getDay(); // 0 domingo
- let diff = (8 - day) % 7;
- if(diff === 0) diff = 7;
- const monday = new Date(now);
- monday.setDate(now.getDate() + diff);
- monday.setHours(0,0,0,0);
- return monday;
+
+/* ===== WHATSAPP ===== */
+function sendMsg(){
+  const text=document.getElementById("msg").value;
+  const url=`https://wa.me/51958206051?text=${encodeURIComponent(text)}`;
+  window.open(url,"_blank");
+
+  intro.style.display="none";
+  pinBox.style.display="block";
 }
-const target = nextMondayMidnight();
 
-/* =========================
-  CONTADOR
-========================= */
-function updateTimer(){
- const now = new Date();
- const diff = target - now;
- if(diff <= 0){
-   document.getElementById("timer").style.display="none";
-   document.getElementById("readyMsg").innerHTML =
-     `<div class="ready">✨ Ya está listo… ábrelo 💜</div>`;
-   return;
- }
- const h = Math.floor(diff / (1000*60*60));
- const m = Math.floor((diff / (1000*60)) % 60);
- const s = Math.floor((diff/1000)%60);
- document.getElementById("timer").innerText =
-   `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+/* ===== PIN ===== */
+const correct="0703";
+let attempts=0;
+
+function checkPin(){
+  const val=pin.value;
+
+  if(val===correct){
+    pinBox.style.display="none";
+    home.style.display="block";
+    loadDays();
+    startCountdown();
+  }else{
+    attempts++;
+    error.innerText=
+      `Clave incorrecta… ahora me debe ${attempts} besito(s) 🙈`;
+  }
 }
-setInterval(updateTimer,1000);
-updateTimer();
 
-/* =========================
-  SELLO DE FECHA
-========================= */
-const stamp = document.getElementById("stampDate");
-const today = new Date().toLocaleDateString("es-PE");
-stamp.innerText = today;
+/* ===== DIAS ===== */
+function loadDays(){
+  const container=document.getElementById("days");
 
-/* =========================
-  CORAZONES
-========================= */
+  const start=new Date("2026-03-03");
+  const today=new Date();
+
+  for(let i=0;i<6;i++){
+    const date=new Date(start);
+    date.setDate(start.getDate()+i);
+
+    const div=document.createElement("div");
+    div.className="day";
+
+    if(today>=date){
+      div.innerText=`Día ${i+1} ✨`;
+      div.onclick=()=>window.location=`dia${i+1}.html`;
+    }else{
+      div.innerText=`Día ${i+1} 🔒`;
+      div.classList.add("lock");
+    }
+
+    container.appendChild(div);
+  }
+}
+
+/* ===== CONTADOR ===== */
+function startCountdown(){
+  const target=new Date("2026-03-06 13:30:00");
+
+  setInterval(()=>{
+    const diff=target-new Date();
+    const h=Math.floor(diff/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+
+    countdown.innerText=
+      `Faltan ${h}h ${m}m para nuestro encuentro ✨`;
+  },1000);
+}
+
+/* ===== ANIMACIÓN ===== */
 function heart(){
- const h=document.createElement("div");
- h.className="heart";
- h.innerHTML="💗";
- h.style.left=Math.random()*window.innerWidth+"px";
- document.body.appendChild(h);
- setTimeout(()=>h.remove(),7000);
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="✿";
+  h.style.left=Math.random()*window.innerWidth+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),9000);
 }
-setInterval(heart,900);
+setInterval(heart,1100);
+
 </script>
+
 </body>
 </html>
