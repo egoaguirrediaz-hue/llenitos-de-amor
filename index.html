@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Una invitación especial ✨</title>
+<title>La temporada de su cumpleaños comienza 🎀</title></title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
@@ -167,21 +167,11 @@ Solo usted posee el código secreto
 <script>
 
 /* ===== WHATSAPP ===== */
-function sendMsg(){
-
-  const text = document.getElementById("msg").value;
-
-  // 👇 tu URL real del sitio
-  const backLink = "https://egoaguirrediaz-hue.github.io/llenitos-de-amor/index.html#pin";
-
-  const fullMessage =
-    text +
-    "\n\n✨ Continúa aquí:\n" +
-    backLink;
-
-  const url = `https://wa.me/51958206051?text=${encodeURIComponent(fullMessage)}`;
-
-  window.location.href = url; // redirige directo
+function sendMsg() {
+    const text = document.getElementById("msg").value; const backLink =
+        "https://egoaguirrediaz-hue.github.io/llenitos-de-amor/index.html#pin"; const fullMessage = `Hola Cris 💜 Estuve
+pensando en lo que espero de esta semana… ${text} Estoy emocionada por lo que viene ✨ Sigo por aquí 👇 ${backLink}`;
+    const url = `https://wa.me/51958206051?text=${encodeURIComponent(fullMessage)}`; window.location.href = url;
 }
 
 /* ===== AUTO IR A PIN SI VIENE DEL LINK ===== */
@@ -268,4 +258,5 @@ setInterval(heart,1100);
 
 </body>
 </html>
+
 
