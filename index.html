@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>La temporada de su cumpleaños comienza 🎀</title></title>
+<title>La temporada de su cumpleaños comienza 🎀</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 
@@ -17,10 +17,8 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-
   font-family:'Cormorant Garamond', serif;
 
-  /* textura pergamino */
   background:
     radial-gradient(circle at 15% 20%, rgba(255,255,255,.7) 0%, transparent 40%),
     radial-gradient(circle at 85% 80%, rgba(255,255,255,.5) 0%, transparent 40%),
@@ -29,17 +27,13 @@ body{
   overflow:hidden;
 }
 
-/* ===== TARJETA ESTILO CARTA ===== */
+/* ===== TARJETA ===== */
 .card{
   background:#fffaf3;
-
   width:90%;
   max-width:440px;
   padding:36px;
-
   border-radius:14px;
-
-  /* borde tipo marco antiguo */
   border:2px solid #e2d3c3;
 
   box-shadow:
@@ -53,27 +47,14 @@ h2{
   font-family:'Playfair Display', serif;
   letter-spacing:1px;
   color:#7a5c3e;
-  margin-bottom:10px;
 }
 
 p{
   color:#5b4a3b;
   line-height:1.6;
-  font-size:1.05em;
 }
 
-/* ===== INPUTS ===== */
-textarea,input{
-  width:100%;
-  padding:10px;
-  margin-top:12px;
-  border-radius:10px;
-  border:1px solid #d8c8b8;
-  font-family:inherit;
-  background:#fff;
-}
-
-/* ===== BOTÓN ESTILO ORO ===== */
+/* ===== BOTÓN ORO ===== */
 button{
   margin-top:14px;
   padding:10px 20px;
@@ -91,7 +72,7 @@ button:hover{
   transform:scale(1.05);
 }
 
-/* ===== DIAS ===== */
+/* ===== DÍAS ===== */
 .day{
   padding:14px;
   margin:10px 0;
@@ -105,7 +86,7 @@ button:hover{
   opacity:.4;
 }
 
-/* ===== FLORECITAS SUAVES ===== */
+/* ===== FLORES ===== */
 .heart{
   position:absolute;
   font-size:12px;
@@ -125,76 +106,45 @@ button:hover{
 
 <!-- INTRO -->
 <div class="card" id="intro">
-<h2>Mi querida reina 👑</h2>
+  <h2>Mi querida reina 👑</h2>
 
-<p>
-He preparado algo especial para usted…<br>
-una pequeña semana llena de detalles,<br>
-pensados únicamente para su sonrisa ✨<br><br>
+  <p>
+    He preparado algo especial para usted…<br>
+    una pequeña semana llena de detalles,<br>
+    pensados únicamente para su sonrisa ✨
+  </p>
 
-Antes de comenzar,<br>
-dígame… ¿qué espera de estos días?
-</p>
-
-<textarea id="msg" placeholder="Escriba aquí su respuesta..."></textarea>
-<button onclick="sendMsg()">Enviar carta 💌</button>
+  <button onclick="goPin()">Comenzar ✨</button>
 </div>
 
 
 <!-- PIN -->
 <div class="card" id="pinBox" style="display:none;">
-<h2>Acceso privado 🔐</h2>
+  <h2>Acceso privado 🔐</h2>
 
-<p>
-Solo usted posee el código secreto
-</p>
+  <p>Solo usted posee el código secreto</p>
 
-<input id="pin" type="password" maxlength="4" placeholder="••••">
-<button onclick="checkPin()">Entrar</button>
+  <input id="pin" type="password" maxlength="4" placeholder="••••">
+  <button onclick="checkPin()">Entrar</button>
 
-<p id="error" style="color:#b85c5c"></p>
+  <p id="error" style="color:#b85c5c"></p>
 </div>
 
 
 <!-- HOME -->
 <div class="card" id="home" style="display:none;">
-<h2>Semana especial ✨</h2>
-<p id="countdown"></p>
-<div id="days"></div>
+  <h2>Semana especial ✨</h2>
+  <p id="countdown"></p>
+  <div id="days"></div>
 </div>
 
 
 <script>
 
-/* ===== WHATSAPP ===== */
-function sendMsg(){
-
-  const text = document.getElementById("msg").value;
-
-  const backLink = "https://egoaguirrediaz-hue.github.io/llenitos-de-amor/index.html#pin";
-
-  const fullMessage =
-`Hola Cris ✨
-
-Estuve pensando en lo que espero de esta semana…
-
-${text}
-
-Estoy emocionada por lo que viene ✨
-Sigo por aquí 👇
-${backLink}`;
-
-  const url = `https://wa.me/51958206051?text=${encodeURIComponent(fullMessage)}`;
-
-  window.location.href = url;
-}
-
-/* ===== AUTO IR A PIN SI VIENE DEL LINK ===== */
-window.onload = function(){
-  if(window.location.hash === "#pin"){
-    intro.style.display="none";
-    pinBox.style.display="block";
-  }
+/* ===== IR AL PIN ===== */
+function goPin(){
+  intro.style.display="none";
+  pinBox.style.display="block";
 }
 
 
@@ -212,12 +162,13 @@ function checkPin(){
     startCountdown();
   }else{
     attempts++;
-    error.innerText=
+    error.innerText =
       `Clave incorrecta… ahora me debe ${attempts} besito(s) 🙈`;
   }
 }
 
-/* ===== DIAS ===== */
+
+/* ===== DÍAS ===== */
 function loadDays(){
   const container=document.getElementById("days");
 
@@ -243,6 +194,7 @@ function loadDays(){
   }
 }
 
+
 /* ===== CONTADOR ===== */
 function startCountdown(){
   const target=new Date("2026-03-06 13:30:00");
@@ -252,10 +204,11 @@ function startCountdown(){
     const h=Math.floor(diff/3600000);
     const m=Math.floor((diff%3600000)/60000);
 
-    countdown.innerText=
+    countdown.innerText =
       `Faltan ${h}h ${m}m para nuestro encuentro ✨`;
   },1000);
 }
+
 
 /* ===== ANIMACIÓN ===== */
 function heart(){
@@ -268,13 +221,7 @@ function heart(){
 }
 setInterval(heart,1100);
 
-
 </script>
 
 </body>
 </html>
-
-
-
-
-
