@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 5 ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+
+/* ===== FONDO PERGAMINO ===== */
+
+body{
+
+  margin:0;
+
+  height:100vh;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  font-family:'Cormorant Garamond', serif;
+
+  background:
+
+  radial-gradient(circle at 20% 20%, #faf4ea 0%, transparent 40%),
+
+  radial-gradient(circle at 80% 80%, #efe3d6 0%, transparent 40%),
+
+  linear-gradient(180deg,#f6eee6,#e9dccb);
+
+  overflow:hidden;
+
+}
+
+/* ===== TARJETA ===== */
+
+.card{
+
+  background:#fffaf3;
+
+  width:90%;
+
+  max-width:430px;
+
+  padding:40px 30px;
+
+  border-radius:16px;
+
+  border:2px solid #e2d3c3;
+
+  box-shadow:
+
+  0 20px 60px rgba(0,0,0,.15),
+
+  inset 0 0 40px rgba(0,0,0,.05);
+
+  text-align:center;
+
+  animation:fade 1s ease;
+
+}
+
+h1{
+
+  font-family:'Great Vibes', cursive;
+
+  font-size:2.5em;
+
+  color:#7a5c3e;
+
+  margin-bottom:10px;
+
+}
+
+p{
+
+  color:#5b4a3b;
+
+  line-height:1.7;
+
+  font-size:1.1em;
+
+}
+
+/* ===== BOTÓN ===== */
+
+button{
+
+  margin-top:20px;
+
+  padding:10px 22px;
+
+  border:none;
+
+  border-radius:20px;
+
+  background:linear-gradient(45deg,#b9935a,#d6b77a);
+
+  color:white;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+button:hover{
+
+  transform:scale(1.05);
+
+}
+
+/* ===== POPUP ===== */
+
+.modal{
+
+  position:fixed;
+
+  inset:0;
+
+  display:none;
+
+  background:rgba(0,0,0,.5);
+
+  justify-content:center;
+
+  align-items:center;
+
+}
+
+.box{
+
+  background:white;
+
+  padding:25px;
+
+  border-radius:14px;
+
+  max-width:280px;
+
+}
+
+/* ===== FLORES ===== */
+
+.flower{
+
+  position:absolute;
+
+  font-size:12px;
+
+  opacity:.2;
+
+  animation:fall 9s linear infinite;
+
+}
+
+@keyframes fall{
+
+  from{transform:translateY(-10vh)}
+
+  to{transform:translateY(110vh)}
+
+}
+
+@keyframes fade{
+
+  from{opacity:0; transform:translateY(20px)}
+
+  to{opacity:1; transform:translateY(0)}
+
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Día 5 ✿</h1>
+<p>
+
+Hoy no hay instrucciones.<br><br>
+
+Solo quiero que disfrutes este día<br>
+
+como lo que es…<br>
+
+un día especial ✨<br><br>
+
+Nos vemos en unas horas<br>
+
+para celebrar tu cumpleaños como se merece 🤍
+</p>
+<button onclick="openNote()">Abrir mensajito</button>
+</div>
+
+<!-- POPUP -->
+<div class="modal" id="modal">
+<div class="box">
+<p>
+
+A veces los regalos son objetos…<br>
+
+y otras veces son historias.<br><br>
+
+Hoy quiero regalarte un pedacito de ambas ✨
+</p>
+<button onclick="closeNote()">Cerrar</button>
+</div>
+</div>
+
+<script>
+
+function openNote(){
+
+  document.getElementById("modal").style.display="flex";
+
+}
+
+function closeNote(){
+
+  document.getElementById("modal").style.display="none";
+
+}
+
+/* flores cayendo */
+
+function flower(){
+
+  const f=document.createElement("div");
+
+  f.className="flower";
+
+  f.innerHTML="✿";
+
+  f.style.left=Math.random()*window.innerWidth+"px";
+
+  document.body.appendChild(f);
+
+  setTimeout(()=>f.remove(),9000);
+
+}
+
+setInterval(flower,900);
+</script>
+</body>
+</html>
+ 
