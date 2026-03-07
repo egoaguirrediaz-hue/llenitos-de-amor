@@ -1,227 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>La temporada de su cumpleaños comienza 🎀</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi Reina 👑</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-
-/* ===== FONDO ELEGANTE ===== */
 body{
   margin:0;
   height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-family:'Cormorant Garamond', serif;
-
+  font-family:'Cormorant Garamond',serif;
   background:
-    radial-gradient(circle at 15% 20%, rgba(255,255,255,.7) 0%, transparent 40%),
-    radial-gradient(circle at 85% 80%, rgba(255,255,255,.5) 0%, transparent 40%),
-    linear-gradient(180deg,#f6efe6,#e8dccb,#dfd0bb);
-
+    radial-gradient(circle at 20% 20%, #faf4ea 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, #efe3d6 0%, transparent 40%),
+    linear-gradient(180deg,#f6eee6,#e9dccb);
   overflow:hidden;
 }
-
-/* ===== TARJETA ===== */
 .card{
   background:#fffaf3;
-  width:90%;
-  max-width:440px;
-  padding:36px;
-  border-radius:14px;
+  padding:40px 30px;
+  border-radius:16px;
+  max-width:420px;
+  text-align:center;
   border:2px solid #e2d3c3;
-
   box-shadow:
     0 20px 60px rgba(0,0,0,.15),
     inset 0 0 40px rgba(0,0,0,.05);
-
-  text-align:center;
 }
-
-h2{
-  font-family:'Playfair Display', serif;
-  letter-spacing:1px;
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:42px;
   color:#7a5c3e;
 }
-
-p{
-  color:#5b4a3b;
-  line-height:1.6;
+.day{
+  opacity:0;
+  transform:translateY(10px);
+  margin:10px 0;
+  transition:all .6s;
 }
-
-/* ===== BOTÓN ORO ===== */
 button{
-  margin-top:14px;
-  padding:10px 20px;
+  margin-top:20px;
+  padding:10px 22px;
   border:none;
   border-radius:20px;
   background:linear-gradient(45deg,#b9935a,#d6b77a);
   color:white;
-  font-family:'Playfair Display', serif;
-  letter-spacing:1px;
   cursor:pointer;
-  transition:.3s;
 }
-
 button:hover{
   transform:scale(1.05);
 }
-
-/* ===== DÍAS ===== */
-.day{
-  padding:14px;
-  margin:10px 0;
-  border-radius:12px;
-  background:#f3e8dc;
-  cursor:pointer;
-  font-weight:600;
+#final{
+  display:none;
+  margin-top:20px;
+  font-size:18px;
 }
-
-.lock{
-  opacity:.4;
-}
-
-/* ===== FLORES ===== */
-.heart{
+.crown{
   position:absolute;
-  font-size:12px;
-  opacity:.18;
-  animation:fall 9s linear infinite;
+  font-size:18px;
+  opacity:.2;
+  animation:fall 10s linear infinite;
 }
-
 @keyframes fall{
   from{transform:translateY(-10vh)}
   to{transform:translateY(110vh)}
 }
-
+/* iframe serenata */
+#serenata{
+  display:none;
+  margin-top:20px;
+}
 </style>
 </head>
-
 <body>
+<div class="card">
+<h1>Mi Reina 👑</h1>
+<p>Esta semana fue pequeña… pero especial.</p>
 
-<!-- INTRO -->
-<div class="card" id="intro">
-  <h2>Mi querida reina 👑</h2>
+<div class="day">Día 1 — Un pequeño lunch 🥪</div>
+<div class="day">Día 2 — Un detalle inesperado 🎁</div>
+<div class="day">Día 3 — Un desayuno ☕🥐</div>
+<div class="day">Día 4 — Una historia esperando por ti 📖</div>
+<div class="day">Día 5 — Nuestro almuerzo 👑</div>
 
-  <p>
-    He preparado algo especial para usted…<br>
-    una pequeña semana llena de detalles,<br>
-    pensados únicamente para su sonrisa ✨
-  </p>
+<button onclick="mostrarFinal()">Abrir mi último mensaje</button>
 
-  <button onclick="goPin()">Comenzar ✨</button>
+<div id="final">
+<br>
+Hoy en tu día especial…<br><br>
+Quería engreirte un poquito más, espero que te haya gustado el almuerzito mi Yess 👑<br><br>
+Feliz cumpleaños.<br><br>
+— Chris
 </div>
 
-
-<!-- PIN -->
-<div class="card" id="pinBox" style="display:none;">
-  <h2>Acceso privado 🔐</h2>
-
-  <p>Solo usted posee el código secreto</p>
-
-  <input id="pin" type="password" maxlength="4" placeholder="••••">
-  <button onclick="checkPin()">Entrar</button>
-
-  <p id="error" style="color:#b85c5c"></p>
+<!-- SERENATA YOUTUBE -->
+<div id="serenata">
+  <iframe 
+    width="100%" height="315"
+    src="https://www.youtube.com/embed/ixZO0j_LCj4?autoplay=1&rel=0"
+    title="Serenata de Las Mañanitas"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
 </div>
 
-
-<!-- HOME -->
-<div class="card" id="home" style="display:none;">
-  <h2>Semana especial ✨</h2>
-  <p id="countdown"></p>
-  <div id="days"></div>
 </div>
-
 
 <script>
+/* animar días */
+let days=document.querySelectorAll(".day")
+days.forEach((d,i)=>{
+  setTimeout(()=>{
+    d.style.opacity=1
+    d.style.transform="translateY(0)"
+  },700*i)
+})
 
-/* ===== IR AL PIN ===== */
-function goPin(){
-  intro.style.display="none";
-  pinBox.style.display="block";
+/* mostrar mensaje + serenata */
+function mostrarFinal(){
+  document.getElementById("final").style.display="block"
+  document.getElementById("serenata").style.display="block"
 }
 
-
-/* ===== PIN ===== */
-const correct="0703";
-let attempts=0;
-
-function checkPin(){
-  const val=pin.value;
-
-  if(val===correct){
-    pinBox.style.display="none";
-    home.style.display="block";
-    loadDays();
-    startCountdown();
-  }else{
-    attempts++;
-    error.innerText =
-      `Clave incorrecta… ahora me debe ${attempts} besito(s) 🙈`;
-  }
+/* coronas */
+function crown(){
+  const c=document.createElement("div")
+  c.className="crown"
+  c.innerHTML="👑"
+  c.style.left=Math.random()*window.innerWidth+"px"
+  document.body.appendChild(c)
+  setTimeout(()=>c.remove(),10000)
 }
-
-
-/* ===== DÍAS ===== */
-function loadDays(){
-  const container=document.getElementById("days");
-
-  const start=new Date("2026-03-02");
-  const today=new Date();
-
-  for(let i=0;i<6;i++){
-    const date=new Date(start);
-    date.setDate(start.getDate()+i);
-
-    const div=document.createElement("div");
-    div.className="day";
-
-    if(today>=date){
-      div.innerText=`Día ${i+1} ✨`;
-      div.onclick=()=>window.location=`dia${i+1}.html`;
-    }else{
-      div.innerText=`Día ${i+1} 🔒`;
-      div.classList.add("lock");
-    }
-
-    container.appendChild(div);
-  }
-}
-
-
-/* ===== CONTADOR ===== */
-function startCountdown(){
-  const target=new Date("2026-03-06 13:30:00");
-
-  setInterval(()=>{
-    const diff=target-new Date();
-    const h=Math.floor(diff/3600000);
-    const m=Math.floor((diff%3600000)/60000);
-
-    countdown.innerText =
-      `Faltan ${h}h ${m}m para nuestro encuentro ✨`;
-  },1000);
-}
-
-
-/* ===== ANIMACIÓN ===== */
-function heart(){
-  const h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="✿";
-  h.style.left=Math.random()*window.innerWidth+"px";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),9000);
-}
-setInterval(heart,1100);
-
+setInterval(crown,800)
 </script>
-
 </body>
 </html>
