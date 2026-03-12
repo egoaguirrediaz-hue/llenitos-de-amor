@@ -1,142 +1,215 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi Reina 👑</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-family:'Cormorant Garamond',serif;
-  background:
-    radial-gradient(circle at 20% 20%, #faf4ea 0%, transparent 40%),
-    radial-gradient(circle at 80% 80%, #efe3d6 0%, transparent 40%),
-    linear-gradient(180deg,#f6eee6,#e9dccb);
-  overflow:hidden;
-}
-.card{
-  background:#fffaf3;
-  padding:40px 30px;
-  border-radius:16px;
-  max-width:420px;
-  text-align:center;
-  border:2px solid #e2d3c3;
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.15),
-    inset 0 0 40px rgba(0,0,0,.05);
-}
-h1{
-  font-family:'Great Vibes',cursive;
-  font-size:42px;
-  color:#7a5c3e;
-}
-.day{
-  opacity:0;
-  transform:translateY(10px);
-  margin:10px 0;
-  transition:all .6s;
-}
-button{
-  margin-top:20px;
-  padding:10px 22px;
-  border:none;
-  border-radius:20px;
-  background:linear-gradient(45deg,#b9935a,#d6b77a);
-  color:white;
-  cursor:pointer;
-}
-button:hover{
-  transform:scale(1.05);
-}
-#final{
-  display:none;
-  margin-top:20px;
-  font-size:18px;
-}
-.crown{
-  position:absolute;
-  font-size:18px;
-  opacity:.2;
-  animation:fall 10s linear infinite;
-}
-@keyframes fall{
-  from{transform:translateY(-10vh)}
-  to{transform:translateY(110vh)}
-}
-/* iframe serenata */
-#serenata{
-  display:none;
-  margin-top:20px;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Mi mensaje para ti ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #ffe4e1, #ffd1dc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0.5em;
+      text-shadow: 2px 2px 10px #ffaec0;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+
+    h1.show {
+      opacity: 1;
+    }
+
+    button {
+      background-color: #ffaec0;
+      border: none;
+      padding: 1em 2em;
+      color: #fff;
+      font-size: 1.2em;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 2em;
+      box-shadow: 0 0 20px #ffc0cb;
+      transition: 0.3s;
+      animation: pulse 2s infinite;
+    }
+
+    button:hover {
+      background-color: #ffc0cb;
+      box-shadow: 0 0 40px #ffb6c1;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ffb6c1;
+      transform: rotate(45deg);
+      animation: fall 5s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ffb6c1;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #fff;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: twinkle 2s infinite;
+    }
+
+    @keyframes twinkle {
+      0%,100% { opacity: 0.2; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* Pop‑up del video */
+    #videoPopup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #videoPopup iframe {
+      width: 80%;
+      height: 60%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    #closePopup {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      font-size: 2.5em;
+      color: #fff;
+      cursor: pointer;
+    }
+
+  </style>
 </head>
 <body>
-<div class="card">
-<h1>Mi Reina 👑</h1>
-<p>Esta semana fue pequeña… pero especial.</p>
 
-<div class="day">Día 1 — Un pequeño lunch 🥪</div>
-<div class="day">Día 2 — Un detalle inesperado 🎁</div>
-<div class="day">Día 3 — Un desayuno ☕🥐</div>
-<div class="day">Día 4 — Una historia esperando por ti 📖</div>
-<div class="day">Día 5 — Nuestro almuerzo 👑</div>
+  <h1 id="slideText">❤️</h1>
+  <button id="nextBtn">Haz clic para leer mi mensaje 💖</button>
 
-<button onclick="mostrarFinal()">Abrir mi último mensaje</button>
+  <!-- Pop‑up del video -->
+  <div id="videoPopup">
+    <span id="closePopup">&times;</span>
+    <iframe
+      id="youtubeVideo"
+      src=""
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-<div id="final">
-<br>
-Hoy en tu día especial…<br><br>
-Quería engreirte un poquito más, espero que te haya gustado el almuerzito mi Yess 👑<br><br>
-Feliz cumpleaños.<br><br>
-— Chris
-</div>
+  <script>
+    const slides = [
+      "Te 💖",
+      "quiero 💛",
+      "decir 💜",
+      "algo muy importante 💕",
+      "Eres! 💝",
+      "una 🌸",
+      "mujer maravillosa ❤️",
+      "y 🌹",
+      "Me encantas 💓"
+    ];
 
-<!-- SERENATA YOUTUBE -->
-<div id="serenata">
-  <iframe 
-    width="100%" height="315"
-    src="https://www.youtube.com/embed/ixZO0j_LCj4?autoplay=1&rel=0"
-    title="Serenata de Las Mañanitas"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-  </iframe>
-</div>
+    let index = 0;
+    const slideText = document.getElementById("slideText");
+    const nextBtn = document.getElementById("nextBtn");
+    const videoPopup = document.getElementById("videoPopup");
+    const youtubeVideo = document.getElementById("youtubeVideo");
+    const closePopup = document.getElementById("closePopup");
 
-</div>
+    nextBtn.addEventListener("click", () => {
+      slideText.classList.remove("show");
+      setTimeout(() => {
+        if (index >= slides.length) {
+          // Abrir pop‑up con video
+          youtubeVideo.src = "https://www.youtube.com/embed/lNBSdFw0t_w?autoplay=1";
+          videoPopup.style.display = "flex";
+        } else {
+          slideText.textContent = slides[index];
+          slideText.classList.add("show");
+          index++;
+          nextBtn.textContent = "Siguiente 💌";
+        }
+      }, 300);
+    });
 
-<script>
-/* animar días */
-let days=document.querySelectorAll(".day")
-days.forEach((d,i)=>{
-  setTimeout(()=>{
-    d.style.opacity=1
-    d.style.transform="translateY(0)"
-  },700*i)
-})
+    // Cerrar pop‑up
+    closePopup.addEventListener("click", () => {
+      videoPopup.style.display = "none";
+      youtubeVideo.src = "";
+    });
 
-/* mostrar mensaje + serenata */
-function mostrarFinal(){
-  document.getElementById("final").style.display="block"
-  document.getElementById("serenata").style.display="block"
-}
+    // Corazones cayendo
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
+      heart.style.width = heart.style.height = (10 + Math.random() * 30) + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
 
-/* coronas */
-function crown(){
-  const c=document.createElement("div")
-  c.className="crown"
-  c.innerHTML="👑"
-  c.style.left=Math.random()*window.innerWidth+"px"
-  document.body.appendChild(c)
-  setTimeout(()=>c.remove(),10000)
-}
-setInterval(crown,800)
-</script>
+    // Destellos
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      sparkle.style.animationDuration = (1 + Math.random() * 2) + 's';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 2000);
+    }
+    setInterval(createSparkle, 200);
+
+  </script>
+
 </body>
 </html>
-
