@@ -1,215 +1,166 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mi mensaje para ti ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #ffe4e1, #ffd1dc);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      overflow: hidden;
-      flex-direction: column;
-    }
+<meta charset="UTF-8">
+<title>Para ti ❤️</title>
 
-    h1 {
-      font-size: 2.5em;
-      margin: 0.5em;
-      text-shadow: 2px 2px 10px #ffaec0;
-      opacity: 0;
-      transition: opacity 1s;
-    }
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  flex-direction: column;
+}
 
-    h1.show {
-      opacity: 1;
-    }
+/* TEXTO */
+h1 {
+  font-size: 2.5em;
+  margin: 0.5em;
+}
 
-    button {
-      background-color: #ffaec0;
-      border: none;
-      padding: 1em 2em;
-      color: #fff;
-      font-size: 1.2em;
-      border-radius: 50px;
-      cursor: pointer;
-      margin-top: 2em;
-      box-shadow: 0 0 20px #ffc0cb;
-      transition: 0.3s;
-      animation: pulse 2s infinite;
-    }
+p {
+  font-size: 1.2em;
+  max-width: 500px;
+}
 
-    button:hover {
-      background-color: #ffc0cb;
-      box-shadow: 0 0 40px #ffb6c1;
-    }
+/* BOTÓN */
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 25px;
+  background: #ff6f91;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px pink;
+}
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
+/* CORAZONES */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: pink;
+  transform: rotate(45deg);
+  animation: fall 5s linear infinite;
+}
 
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ffb6c1;
-      transform: rotate(45deg);
-      animation: fall 5s linear infinite;
-    }
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: pink;
+  border-radius: 50%;
+}
 
-    .heart::before,
-    .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ffb6c1;
-      border-radius: 50%;
-    }
+.heart::before { top: -10px; }
+.heart::after { left: 10px; }
 
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: 10px; top: 0; }
+@keyframes fall {
+  0% { transform: translateY(-100px) rotate(45deg); }
+  100% { transform: translateY(100vh) rotate(45deg); }
+}
 
-    @keyframes fall {
-      0% { transform: translateY(-100px) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(45deg); opacity: 0; }
-    }
+/* POPUP */
+#popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
 
-    .sparkle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: twinkle 2s infinite;
-    }
+.popup-content {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+}
 
-    @keyframes twinkle {
-      0%,100% { opacity: 0.2; transform: scale(0.5); }
-      50% { opacity: 1; transform: scale(1.5); }
-    }
+.popup-content input {
+  padding: 10px;
+  font-size: 1.1em;
+  margin-top: 10px;
+}
 
-    /* Pop‑up del video */
-    #videoPopup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    #videoPopup iframe {
-      width: 80%;
-      height: 60%;
-      border: none;
-      border-radius: 10px;
-    }
-
-    #closePopup {
-      position: absolute;
-      top: 25px;
-      right: 30px;
-      font-size: 2.5em;
-      color: #fff;
-      cursor: pointer;
-    }
-
-  </style>
+</style>
 </head>
+
 <body>
 
-  <h1 id="slideText">❤️</h1>
-  <button id="nextBtn">Haz clic para leer mi mensaje 💖</button>
+<h1>💼 Feliz Día del Trabajador 💖</h1>
+<h2>A la mujer más linda y trabajadora 🌹</h2>
 
-  <!-- Pop‑up del video -->
-  <div id="videoPopup">
-    <span id="closePopup">&times;</span>
-    <iframe
-      id="youtubeVideo"
-      src=""
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
+<p>
+Admiro todo lo que haces, tu esfuerzo, tu dedicación y la forma en que brillas en todo 💕  
+Hoy solo quiero recordarte lo increíble que eres… y lo mucho que me encantas 😍
+</p>
+
+<button onclick="openPopup()">🎁 Abre tu sorpresa</button>
+
+<!-- POPUP -->
+<div id="popup">
+  <div class="popup-content">
+    <h3>💌 Ingresa la hora para tu detalle</h3>
+    <input type="time" id="hora">
+    <br><br>
+    <button onclick="enviarWhatsApp()">Enviar 💖</button>
   </div>
+</div>
 
-  <script>
-    const slides = [
-      "Te 💖",
-      "quiero 💛",
-      "decir 💜",
-      "algo muy importante 💕",
-      "Eres! 💝",
-      "una 🌸",
-      "mujer maravillosa ❤️",
-      "y 🌹",
-      "Me encantas 💓"
-    ];
+<script>
 
-    let index = 0;
-    const slideText = document.getElementById("slideText");
-    const nextBtn = document.getElementById("nextBtn");
-    const videoPopup = document.getElementById("videoPopup");
-    const youtubeVideo = document.getElementById("youtubeVideo");
-    const closePopup = document.getElementById("closePopup");
+/* ABRIR POPUP */
+function openPopup() {
+  document.getElementById("popup").style.display = "flex";
+}
 
-    nextBtn.addEventListener("click", () => {
-      slideText.classList.remove("show");
-      setTimeout(() => {
-        if (index >= slides.length) {
-          // Abrir pop‑up con video
-          youtubeVideo.src = "https://www.youtube.com/embed/lNBSdFw0t_w?autoplay=1";
-          videoPopup.style.display = "flex";
-        } else {
-          slideText.textContent = slides[index];
-          slideText.classList.add("show");
-          index++;
-          nextBtn.textContent = "Siguiente 💌";
-        }
-      }, 300);
-    });
+/* ENVIAR A WHATSAPP */
+function enviarWhatsApp() {
+  const hora = document.getElementById("hora").value;
 
-    // Cerrar pop‑up
-    closePopup.addEventListener("click", () => {
-      videoPopup.style.display = "none";
-      youtubeVideo.src = "";
-    });
+  if (!hora) {
+    alert("Elige una hora 😘");
+    return;
+  }
 
-    // Corazones cayendo
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.animationDuration = (3 + Math.random() * 5) + 's';
-      heart.style.width = heart.style.height = (10 + Math.random() * 30) + 'px';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-    setInterval(createHeart, 300);
+  const mensaje = `Hola mi amor 💖\nYa elegí nuestra cita 🥰\nHora: ${hora} ⏰\nPrepárate porque será especial 😏💋`;
 
-    // Destellos
-    function createSparkle() {
-      const sparkle = document.createElement('div');
-      sparkle.classList.add('sparkle');
-      sparkle.style.left = Math.random() * window.innerWidth + 'px';
-      sparkle.style.top = Math.random() * window.innerHeight + 'px';
-      sparkle.style.animationDuration = (1 + Math.random() * 2) + 's';
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 2000);
-    }
-    setInterval(createSparkle, 200);
+  const numero = "51958206051"; // tu número
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
 
-  </script>
+  window.open(url, "_blank");
+}
+
+/* CORAZONES */
+function crearCorazon() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.style.left = Math.random() * window.innerWidth + "px";
+  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(crearCorazon, 300);
+
+</script>
 
 </body>
 </html>
