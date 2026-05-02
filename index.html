@@ -2,164 +2,153 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para ti ❤️</title>
+<title>Para Ti ❤️</title>
 
 <style>
 body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  overflow: hidden;
-  flex-direction: column;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    overflow-x: hidden;
 }
 
-/* TEXTO */
+/* Pantalla inicial */
+#inicio {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    background: #e91e63;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Carta */
+#contenido {
+    display: none;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
 h1 {
-  font-size: 2.5em;
-  margin: 0.5em;
+    text-align: center;
+    color: #e91e63;
+}
+
+.media img, .media video {
+    width: 100%;
+    border-radius: 15px;
+    margin: 20px 0;
 }
 
 p {
-  font-size: 1.2em;
-  max-width: 500px;
+    text-align: justify;
+    line-height: 1.8;
+    color: #333;
 }
 
-/* BOTÓN */
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  font-size: 1.1em;
-  border: none;
-  border-radius: 25px;
-  background: #ff6f91;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 15px pink;
+.firma {
+    text-align: right;
+    margin-top: 20px;
+    color: #e91e63;
+    font-weight: bold;
 }
 
-/* CORAZONES */
+/* Corazones */
 .heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: pink;
-  transform: rotate(45deg);
-  animation: fall 5s linear infinite;
+    position: fixed;
+    top: -10px;
+    color: red;
+    font-size: 20px;
+    animation: fall linear infinite;
 }
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: pink;
-  border-radius: 50%;
-}
-
-.heart::before { top: -10px; }
-.heart::after { left: 10px; }
 
 @keyframes fall {
-  0% { transform: translateY(-100px) rotate(45deg); }
-  100% { transform: translateY(100vh) rotate(45deg); }
+    to {
+        transform: translateY(100vh);
+    }
 }
-
-/* POPUP */
-#popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background: white;
-  color: black;
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-}
-
-.popup-content input {
-  padding: 10px;
-  font-size: 1.1em;
-  margin-top: 10px;
-}
-
 </style>
+
 </head>
 
 <body>
 
-<h1>💼 Feliz Día del Trabajador 💖</h1>
-<h2>A la mujer más linda y trabajadora 🌹</h2>
+<!-- Pantalla inicial -->
+<div id="inicio">
+    <button onclick="mostrarCarta()">💌 Abre tu sorpresa</button>
+</div>
 
-<p>
-Admiro todo lo que haces, tu esfuerzo, tu dedicación y la forma en que brillas en todo 💕  
-Hoy solo quiero recordarte lo increíble que eres… y lo mucho que me encantas 😍
-</p>
+<!-- Carta -->
+<div id="contenido">
+    <div class="container">
+        <h1>Para Ti, Mi Amor ❤️</h1>
 
-<button onclick="openPopup()">🎁 Abre tu sorpresa</button>
+        <div class="media">
+            <img src="tu-foto.jpg">
+        </div>
 
-<!-- POPUP -->
-<div id="popup">
-  <div class="popup-content">
-    <h3>💌 Ingresa la hora para tu detalle</h3>
-    <input type="time" id="hora">
-    <br><br>
-    <button onclick="enviarWhatsApp()">Enviar 💖</button>
-  </div>
+        <p>Holi mi amor 🥰 paso por aquí para robarte unos minutitos, porque hay algo que quiero decirte desde lo más profundo de mí. A veces siento que las palabras se me quedan cortas para explicarte todo lo que significas para mí… pero contigo siempre me nace intentarlo, porque tú vales cada palabra y un poquito más.</p>
+
+        <p>Desde que llegaste a mi vida, muchas cosas empezaron a cambiar sin darme cuenta. Poco a poco te fuiste metiendo en mis pensamientos… en mis días… y hasta en mis noches 😏, porque sí, también me haces falta ahí, cerquita de mí.</p>
+
+        <p>Me encanta todo de ti: tu forma de ser, tu ternura, tu fuerza… y esa manera tan tuya de hacerme sentir especial. No eres cualquier persona en mi vida… eres esa mujer que me provoca sonreír sin razón y pensar en todo lo que quiero vivir contigo.</p>
+
+        <p>Cada momento que hemos compartido ha ido construyendo algo que valoro muchísimo. Me gusta cómo somos, cómo nos entendemos… y cómo, sin darnos cuenta, hemos creado una conexión que se siente tan natural… tan nuestra.</p>
+
+        <p>Contigo siento paz, pero también esas ganitas de abrazarte fuerte y no soltarte 😌. Eres ese equilibrio perfecto entre tranquilidad y deseo… y sí, no te voy a mentir, también me encanta imaginarme contigo más cerquita de lo normal 🙈.</p>
+
+        <p>Me siento muy orgulloso de ti, de la mujer increíble que eres. Te admiro, te valoro y cada día encuentro una razón nueva para quererte más. Para mí, eres alguien muy especial… de esas personas que no se encuentran todos los días.</p>
+
+        <p>Gracias por existir, por llegar a mi vida y por dejarme ser parte de la tuya. No sé qué nos depare el futuro, pero sí sé que lo que siento por ti es real… y me encanta la idea de seguir descubriéndolo contigo.</p>
+
+        <div class="media">
+            <video controls>
+                <source src="tu-video.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="firma">
+            Te quiero muchísimo ❤️🥰
+        </div>
+    </div>
 </div>
 
 <script>
+function mostrarCarta() {
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("contenido").style.display = "block";
 
-/* ABRIR POPUP */
-function openPopup() {
-  document.getElementById("popup").style.display = "flex";
+    // Corazones
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }, 300);
 }
-
-/* ENVIAR A WHATSAPP */
-function enviarWhatsApp() {
-  const hora = document.getElementById("hora").value;
-
-  if (!hora) {
-    alert("Elige una hora 😘");
-    return;
-  }
-
-  const mensaje = `Hola mi amor 💖\nYa elegí la hora 🥰\nHora: ${hora} ⏰\nMe siento muy especial 😘💋`;
-
-  const numero = "51958206051"; // tu número
-  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-
-  window.open(url, "_blank");
-}
-
-/* CORAZONES */
-function crearCorazon() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.style.left = Math.random() * window.innerWidth + "px";
-  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 5000);
-}
-
-setInterval(crearCorazon, 300);
-
 </script>
 
 </body>
