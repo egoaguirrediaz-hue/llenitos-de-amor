@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Mi Amor 💌</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:#f5efe6;
+  font-family:'Playfair Display',serif;
+  color:#3e2f1c;
+  text-align:center;
+}
+
+/* INTRO */
+#intro{
+  position:fixed;
+  width:100%; height:100%;
+  background:#d4c2a5;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+button{
+  padding:12px 25px;
+  border:1px solid #b89b5e;
+  background:transparent;
+  cursor:pointer;
+  margin:8px;
+  transition:0.3s;
+}
+button:hover{
+  background:#b89b5e;
+  color:white;
+}
+
+/* MAIN */
+.container{
+  display:none;
+  max-width:900px;
+  margin:auto;
+  padding:30px;
+}
+
+/* CARDS */
+.card{
+  background:#fffaf0;
+  padding:25px;
+  margin:20px 0;
+  border:1px solid #d6c2a8;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* TITULO */
+.title{
+  font-family:'Dancing Script', cursive;
+  font-size:42px;
+}
+
+/* TYPE EFFECT */
+.type{
+  border-right:2px solid black;
+  white-space:nowrap;
+  overflow:hidden;
+  animation:typing 4s steps(40), blink .7s infinite;
+}
+
+@keyframes typing{
+  from{width:0;}
+  to{width:100%;}
+}
+@keyframes blink{
+  50%{border-color:transparent;}
+}
+
+/* GALERIA */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+}
+
+.gallery img{
+  width:100%;
+  border:4px solid #d6c2a8;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* HOT */
+.hot{
+  border:2px solid darkred;
+}
+
+/* CARTAS */
+.letter{
+  display:none;
+  background:#fff;
+  padding:20px;
+  margin-top:10px;
+  border-left:4px solid #b89b5e;
+  font-style:italic;
+  line-height:1.6;
+}
+
+/* CORAZONES */
+.heart{
+  position:fixed;
+  animation:float 6s linear;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+<h1>💌 Para Mi Amor 💌</h1>
+<button onclick="start()">Abrir Carta</button>
+</div>
+
+<!-- MUSICA -->
+<audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="main">
+
+<h1 class="title">Mi Amor 💖</h1>
+<p id="counter"></p>
+
+<!-- CARTA PRINCIPAL -->
+<div class="card">
+<p class="type">
+Desde el 20 de mayo de 2026… mi vida cambió para siempre 💕
+</p>
+</div>
+
+<!-- RECUERDOS -->
+<div class="card">
+<h2>📜 Nuestros Recuerdos</h2>
+<p>Cada instante contigo merece quedar guardado 💕</p>
+
+<h3>20/06</h3>
+<div class="gallery">
+<img src="f1.jpg">
+<img src="f2.jpg">
+</div>
+
+<h3>17/06</h3>
+<div class="gallery">
+<img src="f3.jpg">
+<img src="f4.jpg">
+</div>
+
+<h3>06/06</h3>
+<div class="gallery">
+<img src="f5.jpg">
+<img src="f6.jpg">
+</div>
+
+<h3>20/05</h3>
+<div class="gallery">
+<img src="f7.jpg">
+<img src="f8.jpg">
+</div>
+
+<h3>07/04</h3>
+<div class="gallery">
+<img src="f9.jpg">
+<img src="f10.jpg">
+</div>
+
+<!-- MOMENTS -->
+<h2>📸 Moments</h2>
+<div class="gallery">
+<img src="m1.jpg">
+<img src="m2.jpg">
+<img src="m3.jpg">
+</div>
+
+<!-- HOT -->
+<h2>🔥 Hot</h2>
+<p>(solo nosotros sabemos 😉)</p>
+<div class="gallery hot">
+<img src="h1.jpg">
+<img src="h2.jpg">
+</div>
+
+</div>
+
+<!-- CARTAS -->
+<div class="card">
+<h2>💌 Cartas Selladas</h2>
+<p>Palabras que no siempre digo… pero siempre siento 💕</p>
+
+<button onclick="openLetter('c1')">Abrir carta I</button>
+<div id="c1" class="letter">
+Mi Amor…<br><br>
+Desde que llegaste, todo tiene más sentido 💖
+</div>
+
+<button onclick="openLetter('c2')">Abrir carta II</button>
+<div id="c2" class="letter">
+Contigo todo se siente correcto… como destino ✨
+</div>
+
+<button onclick="openLetter('c3')">Abrir carta III</button>
+<div id="c3" class="letter">
+Eres esa persona que no quiero perder nunca 💕
+</div>
+
+<button onclick="openLetter('c4')">Abrir carta especial</button>
+<div id="c4" class="letter">
+Gracias por existir y por estar en mi vida 💖
+</div>
+
+</div>
+
+<!-- FINAL -->
+<div class="card">
+<button onclick="revealFinal()">Tengo algo que decirte…</button>
+<p id="finalText"></p>
+</div>
+
+</div>
+
+<script>
+
+// START
+function start(){
+  document.getElementById("intro").style.display="none";
+  document.getElementById("main").style.display="block";
+  document.getElementById("music").play();
+  hearts();
+  counter();
+}
+
+// CONTADOR
+function counter(){
+  setInterval(()=>{
+    let startDate=new Date("2026-05-20");
+    let now=new Date();
+    let diff=now-startDate;
+
+    let d=Math.floor(diff/1000/60/60/24);
+
+    document.getElementById("counter").innerHTML =
+    "Han pasado "+d+" días desde que el destino nos unió 💕";
+
+  },1000);
+}
+
+// CORAZONES
+function hearts(){
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.innerHTML="💖";
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  },400);
+}
+
+// CARTAS
+function openLetter(id){
+  document.getElementById(id).style.display="block";
+}
+
+// FINAL
+function revealFinal(){
+  document.getElementById("finalText").innerHTML =
+  `
+  Mi Amor… 💖<br><br>
+
+  No eres solo especial…<br>
+  eres todo lo que quiero en mi vida ✨<br><br>
+
+  Eres mi mujer…  
+  y no quiero a nadie más 💕<br><br>
+
+  Siempre tú…  
+  siempre nosotros 💖
+  `;
+}
+
+</script>
+
+</body>
+</html>
