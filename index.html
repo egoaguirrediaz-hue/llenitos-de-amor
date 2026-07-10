@@ -1,306 +1,481 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<title>Para Mi Amor 💌</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Dancing+Script&display=swap" rel="stylesheet">
+    <title>Para mi Reina ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<style>
-body{
-  margin:0;
-  background:#f5efe6;
-  font-family:'Playfair Display',serif;
-  color:#3e2f1c;
-  text-align:center;
-}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-/* INTRO */
-#intro{
-  position:fixed;
-  width:100%; height:100%;
-  background:#d4c2a5;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-}
-
-button{
-  padding:12px 25px;
-  border:1px solid #b89b5e;
-  background:transparent;
-  cursor:pointer;
-  margin:8px;
-  transition:0.3s;
-}
-button:hover{
-  background:#b89b5e;
-  color:white;
-}
-
-/* MAIN */
-.container{
-  display:none;
-  max-width:900px;
-  margin:auto;
-  padding:30px;
-}
-
-/* CARDS */
-.card{
-  background:#fffaf0;
-  padding:25px;
-  margin:20px 0;
-  border:1px solid #d6c2a8;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-/* TITULO */
-.title{
-  font-family:'Dancing Script', cursive;
-  font-size:42px;
-}
-
-/* TYPE EFFECT */
-.type{
-  border-right:2px solid black;
-  white-space:nowrap;
-  overflow:hidden;
-  animation:typing 4s steps(40), blink .7s infinite;
-}
-
-@keyframes typing{
-  from{width:0;}
-  to{width:100%;}
-}
-@keyframes blink{
-  50%{border-color:transparent;}
-}
-
-/* GALERIA */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:12px;
-}
-
-.gallery img{
-  width:100%;
-  border:4px solid #d6c2a8;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.gallery img:hover{
-  transform:scale(1.05);
-}
-
-/* HOT */
-.hot{
-  border:2px solid darkred;
-}
-
-/* CARTAS */
-.letter{
-  display:none;
-  background:#fff;
-  padding:20px;
-  margin-top:10px;
-  border-left:4px solid #b89b5e;
-  font-style:italic;
-  line-height:1.6;
-}
-
-/* CORAZONES */
-.heart{
-  position:fixed;
-  animation:float 6s linear;
-}
-
-@keyframes float{
-  from{transform:translateY(100vh);}
-  to{transform:translateY(-10vh);}
-}
-</style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-<h1>💌 Para Mi Amor 💌</h1>
-<button onclick="start()">Abrir Carta</button>
-</div>
+    <!-- ==========================
+         PANTALLA DE CARGA
+    =========================== -->
+    <div id="loader" class="screen active">
+        <div class="loader-content">
+            <div class="heart-loader">❤️</div>
+            <h2>Preparando una pequeña sorpresa...</h2>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
 
-<!-- MUSICA -->
-<audio id="music" loop>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
 
-<div class="container" id="main">
+    <!-- ==========================
+         BIENVENIDA
+    =========================== -->
+    <section id="welcome" class="screen hidden">
 
-<h1 class="title">Mi Amor 💖</h1>
-<p id="counter"></p>
+        <div class="stars"></div>
 
-<!-- CARTA PRINCIPAL -->
-<div class="card">
-<p class="type">
-Desde el 20 de mayo de 2026… mi vida cambió para siempre 💕
-</p>
-</div>
+        <div class="moon">
+            🌙
+        </div>
 
-<!-- RECUERDOS -->
-<div class="card">
-<h2>📜 Nuestros Recuerdos</h2>
-<p>Cada instante contigo merece quedar guardado 💕</p>
 
-<h3>20/06</h3>
-<div class="gallery">
-<img src="IMG_3105.jpeg">
-<img src="IMG_3107.jpeg">
-</div>
+        <div class="glass-card">
 
-<h3>17/06</h3>
-<div class="gallery">
-<img src="9e0c9f92-f2b4-4049-9331-4aef4c1886c0.jpeg">
-<img src="IMG_3041.jpeg">
-</div>
+            <h1>
+                Hola, Mi Amor ❤️
+            </h1>
 
-<h3>06/06</h3>
-<div class="gallery">
-<img src="IMG_2801.jpeg">
-<img src="IMG_2806.jpeg">
-</div>
 
-<h3>20/05</h3>
-<div class="gallery">
-<img src="IMG_2443.jpeg">
-<img src="IMG_2424.jpeg">
-<img src="IMG_2427.jpeg">
-</div>
+            <p>
+                Hice este pequeño lugar solo para ti.
+            </p>
 
-<h3>07/04</h3>
-<div class="gallery">
-<img src="IMG_0898.jpeg">
-</div>
 
-<!-- MOMENTS -->
-<h2>📸 Moments</h2>
-<div class="gallery">
-<img src="C57F2034-B031-4816-9719-7D33E193CC5A.png">
-<img src="Image.jpg">
-<img src="124B7E42-FF62-483A-AFFA-56830FFDFD8E.jpeg">
-</div>
+            <p>
+                Porque hay personas que merecen detalles...
+                y tú eres una de ellas.
+            </p>
 
-<!-- HOT -->
-<h2>🔥 Hot</h2>
-<p>(solo nosotros sabemos 😉)</p>
-<div class="gallery hot">
-<img src="27b5fd4f-b868-4681-a76b-c96a57813a1f.jpeg">
-<img src="829a16dc-2727-45f2-84c7-4ff0311bbee3.jpeg">
-</div>
 
-</div>
+            <button onclick="activateExperience()" id="musicStart">
 
-<!-- CARTAS -->
-<div class="card">
-<h2>💌 Cartas Selladas</h2>
-<p>Palabras que no siempre digo… pero siempre siento 💕</p>
+                Comenzar mi sorpresa ❤️
 
-<button onclick="openLetter('c1')">Abrir carta I</button>
-<div id="c1" class="letter">
-Mi Amor…<br><br>
-Desde que llegaste, todo tiene más sentido 💖
-</div>
+            </button>
 
-<button onclick="openLetter('c2')">Abrir carta II</button>
-<div id="c2" class="letter">
-Contigo todo se siente correcto… como destino ✨
-</div>
 
-<button onclick="openLetter('c3')">Abrir carta III</button>
-<div id="c3" class="letter">
-Eres esa persona que no quiero perder nunca 💕
-</div>
+            <br><br>
 
-<button onclick="openLetter('c4')">Abrir carta especial</button>
-<div id="c4" class="letter">
-Gracias por existir y por estar en mi vida 💖
-</div>
 
-</div>
 
-<!-- FINAL -->
-<div class="card">
-<button onclick="revealFinal()">Tengo algo que decirte…</button>
-<p id="finalText"></p>
-</div>
+        </div>
 
-</div>
 
-<script>
+    </section>
 
-// START
-function start(){
-  document.getElementById("intro").style.display="none";
-  document.getElementById("main").style.display="block";
-  document.getElementById("music").play();
-  hearts();
-  counter();
-}
 
-// CONTADOR
-function counter(){
-  setInterval(()=>{
-    let startDate=new Date("2026-05-20");
-    let now=new Date();
-    let diff=now-startDate;
 
-    let d=Math.floor(diff/1000/60/60/24);
+    <!-- ==========================
+         MENSAJE DE APOYO
+    =========================== -->
+    <section id="support" class="screen hidden">
 
-    document.getElementById("counter").innerHTML =
-    "Han pasado "+d+" días desde que el destino nos unió 💕";
+        <div class="glass-card">
 
-  },1000);
-}
+            <h2 id="typing-text"></h2>
 
-// CORAZONES
-function hearts(){
-  setInterval(()=>{
-    let h=document.createElement("div");
-    h.innerHTML="💖";
-    h.className="heart";
-    h.style.left=Math.random()*100+"vw";
-    h.style.fontSize=(Math.random()*20+10)+"px";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),6000);
-  },400);
-}
+        </div>
 
-// CARTAS
-function openLetter(id){
-  document.getElementById(id).style.display="block";
-}
+    </section>
 
-// FINAL
-function revealFinal(){
-  document.getElementById("finalText").innerHTML =
-  `
-  Mi Amor… 💖<br><br>
 
-  No eres solo especial…<br>
-  eres todo lo que quiero en mi vida ✨<br><br>
 
-  Eres mi mujer…  
-  y no quiero a nadie más 💕<br><br>
+    <!-- ==========================
+         CARTA
+    =========================== -->
+    <section id="letter-section" class="screen hidden">
 
-  Siempre tú…  
-  siempre nosotros 💖
-  `;
-}
+        <div class="envelope-container" onclick="openLetter()">
 
-</script>
+
+            <div class="envelope">
+
+
+                <div class="flap"></div>
+
+
+                <div class="paper">
+
+                    ❤️
+
+                </div>
+
+
+            </div>
+
+
+            <p>
+                Ábreme, Mi Reina 💌
+            </p>
+
+
+        </div>
+
+
+        <div id="letter" class="letter hidden">
+
+            <h2>
+                Para mi Reina ❤️
+            </h2>
+
+
+            <p>
+                Mi Amor...
+            </p>
+
+
+            <p>
+                Sé que esta semana ha sido complicada.
+                Sé que has estado cansada, con muchas cosas
+                en la cabeza y con momentos donde todo parece pesar más.
+            </p>
+
+
+            <p>
+                Pero quiero que nunca olvides algo:
+                admiro muchísimo la mujer que eres.
+            </p>
+
+
+            <p>
+                Me encanta tu forma de luchar,
+                tu forma de seguir adelante,
+                incluso cuando nadie ve todo el esfuerzo que haces.
+            </p>
+
+
+            <p>
+                Estoy orgulloso de ti, Mi Reina.
+            </p>
+
+
+            <p>
+                Y quiero que recuerdes que tienes a alguien
+                que te piensa, que te cuida y que te ama muchísimo.
+            </p>
+
+
+            <h3>
+                Te amo ❤️
+            </h3>
+            <br>
+
+            <button onclick="goToGallery()">
+
+                Ver nuestros recuerdos 📸
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         GALERÍA
+    =========================== -->
+    <section id="gallery" class="screen hidden">
+
+        <div class="glass-card gallery-card">
+
+
+            <h2>
+                Nuestros recuerdos ❤️
+            </h2>
+
+
+            <p>
+                Algunos momentos que guardo con mucho cariño...
+            </p>
+
+
+            <div class="album">
+
+
+                <div class="photo-card">
+
+                    <img src="assets/images/foto1.jpg">
+
+                    <span>
+                        Un momento que siempre recordaré ❤️
+                    </span>
+
+                </div>
+
+
+
+                <div class="photo-card">
+
+                    <img src="assets/images/foto2.jpg">
+
+                    <span>
+                        Porque contigo todo es especial ✨
+                    </span>
+
+                </div>
+
+
+
+                <div class="photo-card">
+
+                    <img src="assets/images/foto3.jpg">
+
+                    <span>
+                        Mi lugar favorito es contigo ❤️
+                    </span>
+
+                </div>
+
+
+
+                <div class="photo-card">
+
+                    <img src="assets/images/foto4.jpg">
+
+                    <span>
+                        Más recuerdos por crear 🌙
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <button onclick="goToReasons()">
+
+                Seguir ❤️
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         RAZONES
+    =========================== -->
+    <section id="reasons" class="screen hidden">
+
+        <div class="glass-card reasons-card">
+
+
+            <h2>
+                Razones por las que amo a mi Reina ❤️
+            </h2>
+
+
+            <div class="reason-box">
+
+                <p id="reason-text">
+                    Toca el botón y descubre una razón...
+                </p>
+
+            </div>
+
+
+            <button onclick="showReason()">
+                Dame otra razón ❤️
+            </button>
+
+
+            <br><br>
+
+
+            <button onclick="goToBreathing()">
+
+                🌙 Un momento para ti
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================
+     RESPIRAR JUNTOS
+========================== -->
+
+    <section id="breathing" class="screen hidden">
+
+
+        <div class="glass-card breathing-card">
+
+
+            <h2>
+                Un momento para ti, Mi Reina ❤️
+            </h2>
+
+
+            <p>
+                Antes de continuar...
+                regálate unos segundos.
+            </p>
+
+
+            <div class="breathing-circle">
+
+                <span id="breath-text">
+                    Inhala...
+                </span>
+
+            </div>
+
+
+            <p id="breath-message">
+
+                Estoy aquí contigo ❤️
+
+            </p>
+
+
+            <button onclick="goToFinal()">
+
+                Continuar ✨
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+    <!-- ==========================
+         FINAL
+    =========================== -->
+    <!-- ==========================
+     FINAL ROMÁNTICO
+========================== -->
+
+    <section id="final" class="screen hidden">
+
+
+        <div class="final-stars"></div>
+
+
+        <div class="glass-card final-card">
+
+
+            <div class="final-heart">
+
+                ❤️
+
+            </div>
+
+
+            <h1>
+                Te amo muchísimo,
+                Mi Reina ❤️
+            </h1>
+
+
+
+            <p class="final-text">
+
+                Si llegaste hasta aquí...
+
+            </p>
+
+
+
+            <p>
+
+                quiero que sepas que cada palabra,
+                cada detalle y cada segundo de esta página
+                fueron hechos pensando en ti.
+
+            </p>
+
+
+
+            <p>
+
+                Sé que has tenido días difíciles,
+                pero nunca olvides lo especial,
+                fuerte y hermosa que eres.
+
+            </p>
+
+
+
+            <p>
+
+                Ojalá pudiera estar ahí ahora mismo
+                para abrazarte y decirte todo esto
+                mirándote a los ojos.
+
+            </p>
+
+
+
+            <h2>
+
+                Mi lugar favorito siempre será contigo ❤️
+
+            </h2>
+
+
+
+            <button onclick="callMe()" class="call-button">
+
+                📞 Ven por tu abrazo
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+    <div id="photoViewer" class="photo-viewer hidden">
+
+
+        <span onclick="closePhoto()">
+            ✖
+        </span>
+
+
+        <img id="fullPhoto">
+
+
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="music" loop preload="auto">
+
+        <source src="assets/music/piano.mp3" type="audio/mpeg">
+
+    </audio>
+    <button id="musicButton" onclick="toggleMusic()">
+
+        🎵 Música
+
+    </button>
+
+
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>

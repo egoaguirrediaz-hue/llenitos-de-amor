@@ -1,0 +1,1432 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+font-family:'Poppins',sans-serif;
+    background:
+        linear-gradient(180deg,
+            #050814,
+            #0B1735,
+            #060812);
+    color: white;
+    overflow-x: hidden;
+}
+
+
+/* ==========================
+   PANTALLAS
+========================== */
+
+.screen {
+
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    padding: 25px;
+
+    transition: opacity 1s ease,
+        transform 1s ease;
+
+}
+
+
+.hidden {
+
+    display: none;
+
+}
+
+
+.fade-out {
+
+    animation:
+        fadeOut 1s forwards;
+
+}
+
+
+
+.fade-in {
+
+    animation:
+        fadeIn 1s forwards;
+
+}
+
+
+
+@keyframes fadeOut {
+
+
+    from {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+
+    to {
+
+
+        opacity: 0;
+
+        transform:
+            scale(.95);
+
+
+    }
+
+
+}
+
+
+
+
+@keyframes fadeIn {
+
+
+    from {
+
+
+        opacity: 0;
+
+        transform:
+            scale(1.05);
+
+
+    }
+
+
+    to {
+
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+
+    }
+
+
+}
+
+
+.active {
+
+    display: flex;
+
+}
+
+
+
+/* ==========================
+   FONDO ESTRELLAS
+========================== */
+
+.stars {
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    background-image:
+        radial-gradient(circle, white 1px, transparent 1px);
+
+    background-size:
+        50px 50px;
+
+    opacity: .25;
+
+    animation:
+        moveStars 60s linear infinite;
+
+}
+
+
+@keyframes moveStars {
+
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 500px 500px;
+    }
+
+}
+
+
+
+/* ==========================
+   TARJETA CRISTAL
+========================== */
+
+
+.glass-card {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 600px;
+
+    width: 100%;
+
+    padding: 40px;
+
+    margin:40px auto;
+
+    text-align: center;
+
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+
+    backdrop-filter:
+        blur(15px);
+
+
+    border-radius: 25px;
+
+
+    border:
+        1px solid rgba(255, 255, 255, .15);
+
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, .5);
+
+
+}
+
+
+
+/* ==========================
+   TEXTOS
+========================== */
+
+
+h1 {
+
+ 
+    font-family:'Great Vibes',cursive;
+
+    font-size:4rem;
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+
+h2 {
+
+  font-family:'Poppins',sans-serif;
+
+    font-weight:600;
+
+}
+
+
+p {
+
+    font-size: 1.2rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+h3 {
+
+    margin-top: 30px;
+
+    font-size: 2.5rem;
+
+    color: #ff8fab;
+
+}
+
+
+
+/* ==========================
+   BOTONES
+========================== */
+
+
+button {
+
+
+    border: none;
+
+
+    padding:
+        15px 35px;
+
+
+    border-radius:
+        50px;
+
+
+    background:
+        linear-gradient(135deg,
+            #ff8fab,
+            #ff4d8d);
+
+
+    color: white;
+
+
+    font-size: 1.1rem;
+
+
+    cursor: pointer;
+
+
+    transition:
+        .3s;
+
+
+    box-shadow:
+        0 10px 30px rgba(255, 77, 141, .4);
+
+
+}
+
+
+button:hover{
+
+transform:
+translateY(-5px)
+scale(1.05);
+
+box-shadow:
+0 15px 40px rgba(255,105,180,.5);
+
+filter:
+brightness(1.1);
+
+}
+
+
+
+
+/* ==========================
+   LOADER
+========================== */
+
+
+.loader-content {
+
+    text-align: center;
+
+}
+
+
+.heart-loader {
+
+
+    font-size: 5rem;
+
+    animation:
+
+        heartbeat 1s infinite;
+
+}
+
+
+
+@keyframes heartbeat {
+
+
+    0% {
+        transform: scale(1);
+    }
+
+
+    50% {
+        transform: scale(1.25);
+    }
+
+
+    100% {
+        transform: scale(1);
+    }
+
+
+}
+
+
+
+.loading-bar {
+
+    width: 300px;
+
+    height: 10px;
+
+    background:
+        rgba(255, 255, 255, .2);
+
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-top: 30px;
+
+}
+
+
+
+.loading-progress {
+
+
+    height: 100%;
+
+    width: 0;
+
+
+    background: #ff8fab;
+
+
+    animation:
+        loading 3s forwards;
+
+
+}
+
+
+
+@keyframes loading {
+
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+
+
+}
+
+
+
+/* ==========================
+   SOBRE
+========================== */
+
+@keyframes floating {
+
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-20px);
+
+    }
+
+}
+
+
+
+/* ==========================
+   CARTA
+========================== */
+
+
+.letter {
+
+
+    background:
+        #fff8f0;
+
+
+    color: #5b3040;
+
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .45);
+    padding: 40px;
+
+
+    border-radius: 20px;
+
+
+    max-width: 650px;
+
+
+    line-height: 1.8;
+
+
+    animation:
+        appear 1s;
+
+
+}
+
+
+.letter h2 {
+
+
+    color: #d63384;
+
+
+}
+
+
+.letter h3 {
+
+
+    color: #d63384;
+
+}
+
+
+
+
+@keyframes appear {
+
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.8);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1);
+
+    }
+
+
+}
+
+
+
+/* ==========================
+   FOTOS
+========================== */
+
+
+.photos {
+
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+
+}
+
+
+
+.photos img {
+
+
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+
+    border-radius: 20px;
+
+
+    transition: .4s;
+
+
+}
+
+
+
+.photos img:hover {
+
+
+    transform:
+        scale(1.05);
+
+
+}
+
+
+
+
+/* ==========================
+   RESPONSIVE CELULAR
+========================== */
+
+
+@media(max-width:600px) {
+
+
+    h1 {
+
+        font-size: 2.2rem;
+
+    }
+
+
+    h2 {
+
+        font-size: 1.6rem;
+
+    }
+
+
+    p {
+
+        font-size: 1rem;
+
+    }
+
+
+    .glass-card {
+
+        padding: 25px;
+
+    }
+
+
+    .photos {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+}
+
+/* ==========================
+   LUNA ANIMADA
+========================== */
+
+
+.moon {
+
+    position: absolute;
+
+    top: 60px;
+
+    right: 80px;
+
+    font-size: 90px;
+
+    filter:
+        drop-shadow(0 0 25px #fff);
+
+
+    animation:
+        moonFloat 5s infinite ease-in-out;
+
+}
+
+
+
+@keyframes moonFloat {
+
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:
+            translateY(-20px);
+
+    }
+
+
+}
+
+
+
+@media(max-width:600px) {
+
+    .moon {
+
+        top: 30px;
+
+        right: 30px;
+
+        font-size: 60px;
+
+    }
+
+}
+
+/* ==========================
+   RAZONES DE AMOR
+========================== */
+
+
+.reasons-card {
+
+    overflow: hidden;
+
+}
+
+
+.reason-box {
+
+
+    min-height: 150px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+
+}
+
+
+
+#reason-text {
+
+
+    font-size: 1.5rem;
+
+    color: #ffd6e0;
+
+    animation:
+        reasonAppear .8s;
+
+
+}
+
+
+
+@keyframes reasonAppear {
+
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+
+}
+
+/* ==========================
+   ALBUM DE RECUERDOS
+========================== */
+
+
+.album {
+
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+
+    gap: 25px;
+
+    margin: 30px 0;
+
+
+}
+
+
+
+.photo-card {
+
+
+    background: #fff;
+
+
+    padding: 15px;
+
+
+    border-radius: 5px;
+
+
+    transform:
+        rotate(-2deg);
+
+
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, .3);
+
+
+    transition: .5s;
+
+
+}
+
+
+
+.photo-card:nth-child(even) {
+
+
+    transform:
+        rotate(2deg);
+
+
+}
+
+
+
+.photo-card:hover {
+
+
+    transform:
+        scale(1.08) rotate(0);
+
+
+}
+
+
+
+.photo-card img {
+
+
+    width: 100%;
+
+
+    height: 220px;
+
+    border-radius:3px;
+
+    box-shadow:
+0 5px 15px rgba(0,0,0,.2);
+
+    object-fit: cover;
+
+
+}
+
+
+
+.photo-card span {
+
+
+    display: block;
+
+
+    color: #6b4050;
+
+
+    padding-top: 15px;
+
+
+    font-size: .95rem;
+
+
+    text-align: center;
+
+
+}
+
+
+
+@media(max-width:600px) {
+
+
+    .album {
+
+
+        grid-template-columns:
+            1fr;
+
+
+    }
+
+
+}
+
+/* ==========================
+   RESPIRACIÓN
+========================== */
+
+
+.breathing-card {
+
+    text-align: center;
+
+}
+
+
+
+.breathing-circle {
+
+
+    width: 180px;
+
+    height: 180px;
+
+
+    margin: 40px auto;
+
+
+    border-radius: 50%;
+
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    background:
+        rgba(255, 143, 171, .25);
+
+
+    border:
+        3px solid #ff8fab;
+
+
+    animation:
+        breathing 8s infinite ease-in-out;
+
+
+}
+
+
+
+.breathing-circle span {
+
+
+    font-size: 1.5rem;
+
+    color: white;
+
+
+}
+
+
+
+@keyframes breathing {
+
+
+    0% {
+
+        transform: scale(1);
+
+    }
+
+
+    25% {
+
+
+        transform: scale(1.35);
+
+    }
+
+
+    50% {
+
+
+        transform: scale(1.35);
+
+    }
+
+
+    75% {
+
+
+        transform: scale(1);
+
+    }
+
+
+    100% {
+
+
+        transform: scale(1);
+
+    }
+
+
+}
+
+/* ==========================
+   FINAL ROMÁNTICO
+========================== */
+
+
+.final-card {
+
+
+    animation:
+        finalAppear 2s;
+
+
+}
+
+
+
+.final-heart {
+
+
+font-size:120px;
+
+    animation:
+
+        heartbeat 1.5s infinite;
+
+
+}
+
+
+
+.final-text {
+
+
+    font-size: 2rem;
+
+    color: #ffb6c9;
+
+
+}
+
+
+
+.call-button {
+
+
+    margin-top: 30px;
+
+
+    font-size: 1.3rem;
+
+
+    padding:
+        18px 45px;
+
+
+}
+
+
+
+@keyframes finalAppear {
+
+
+    from {
+
+
+        opacity: 0;
+
+        transform:
+            translateY(50px);
+
+
+    }
+
+
+    to {
+
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+
+    }
+
+
+}
+
+
+
+.final-stars {
+
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+
+    background-image:
+
+        radial-gradient(circle,
+            white 1px,
+            transparent 1px);
+
+
+    background-size:
+        40px 40px;
+
+
+    animation:
+        moveStars 50s linear infinite;
+
+
+    opacity: .3;
+
+
+}
+
+/* ==========================
+   SOBRE ANIMADO
+========================== */
+
+
+.envelope-container {
+
+
+    cursor: pointer;
+
+    text-align: center;
+
+
+}
+
+
+
+.envelope {
+
+
+    width: 260px;
+
+    height: 180px;
+
+
+    background:
+        #ff8fab;
+
+
+    position: relative;
+
+
+    margin: auto;
+
+
+    border-radius: 10px;
+
+
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, .4);
+
+
+    overflow: hidden;
+
+
+    transition:
+        transform .5s;
+
+
+}
+
+
+
+.envelope:hover {
+
+
+    transform:
+        translateY(-10px);
+
+
+}
+
+
+
+.flap {
+
+
+    position: absolute;
+
+
+    top: 0;
+
+    left: 0;
+
+
+    width: 0;
+
+    height: 0;
+
+
+    border-left:
+        130px solid transparent;
+
+
+    border-right:
+        130px solid transparent;
+
+
+    border-top:
+        100px solid #ffb3c6;
+
+
+    transform-origin:
+        top;
+
+
+    transition:
+        transform 1s;
+
+
+    z-index: 2;
+
+
+}
+
+
+
+.paper {
+
+
+    position: absolute;
+
+
+    width: 180px;
+
+    height: 120px;
+
+
+    background: white;
+
+
+    color: #ff4d8d;
+
+
+    top: 50px;
+
+
+    left: 40px;
+
+
+    border-radius: 5px;
+
+
+    display: flex;
+
+
+    justify-content: center;
+
+    align-items: center;
+
+
+    font-size: 40px;
+
+
+    transition:
+        transform 1s;
+
+
+}
+
+
+
+.envelope-container.open .flap {
+
+
+    transform:
+        rotateX(180deg);
+
+
+}
+
+
+
+.envelope-container.open .paper {
+
+
+    transform:
+        translateY(-100px);
+
+
+}
+
+
+
+.envelope-container.open .envelope {
+
+
+    background: #ffd6e0;
+
+
+}
+
+#musicStart {
+
+
+    margin-top: 20px;
+
+
+    background:
+        linear-gradient(135deg,
+            #ffd166,
+            #ff8fab);
+
+
+}
+
+
+
+#musicStart:disabled {
+
+
+    opacity: .7;
+
+    cursor: default;
+
+
+}
+
+/* ==========================
+   VISOR FOTOS
+========================== */
+
+
+.photo-viewer {
+
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.95);
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+
+}
+
+
+
+.photo-viewer img {
+
+
+    max-width: 90%;
+
+
+    max-height: 80%;
+
+
+    border-radius: 20px;
+
+
+    animation:
+        finalAppear 1s;
+
+
+}
+
+
+
+.photo-viewer span {
+
+
+    position: absolute;
+
+
+    top: 30px;
+
+
+    right: 40px;
+
+
+    font-size: 40px;
+
+
+    cursor: pointer;
+
+
+}
+
+#musicButton{
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+z-index:99999;
+
+border-radius:50px;
+
+padding:15px 20px;
+
+backdrop-filter:blur(10px);
+
+}
+
+.photo-viewer.hidden{
+    display:none !important;
+}
+
+.photo-viewer.hidden{
+    display:none !important;
+}
