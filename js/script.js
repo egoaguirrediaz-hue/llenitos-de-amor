@@ -32,9 +32,10 @@ window.onload = () => {
 
         setTimeout(() => {
 
-            loader.classList.add("hidden");
+            loader.classList.remove("active");
+    loader.classList.add("hidden");
 
-            welcome.classList.remove("hidden");
+    welcome.classList.remove("hidden");
 
             music.volume = 0.25;
 
