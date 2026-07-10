@@ -33,9 +33,9 @@ window.onload = () => {
         setTimeout(() => {
 
             loader.classList.remove("active");
-    loader.classList.add("hidden");
+            loader.classList.add("hidden");
 
-    welcome.classList.remove("hidden");
+            welcome.classList.remove("hidden");
 
             music.volume = 0.25;
 
@@ -502,23 +502,23 @@ document.querySelectorAll(".photo-card")
     .forEach(photo => {
 
 
-      photo.addEventListener("click",(e)=>{
+        photo.addEventListener("click", (e) => {
 
-        if(e.target.tagName==="IMG"){
-            return;
-        }
+            if (e.target.tagName === "IMG") {
+                return;
+            }
 
-        createHearts();
+            createHearts();
 
-        photo.style.transform="scale(1.1)";
+            photo.style.transform = "scale(1.1)";
 
-        setTimeout(()=>{
+            setTimeout(() => {
 
-            photo.style.transform="";
+                photo.style.transform = "";
 
-        },500);
+            }, 500);
 
-    });
+        });
 
 
 
